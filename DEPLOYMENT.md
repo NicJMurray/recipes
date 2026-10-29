@@ -3,6 +3,8 @@
 - GitHub: `NicJMurray/recipes`
 - Production branch: `main`
 - Cloudflare Pages project: `recipes`
+- Pages project ID: `d1819767-aade-44a5-8937-b554e98ecf02`
+- Pages hostname: `recipes-3tk.pages.dev`
 - Build command: `npm run build && npm run check`
 - Build output: `dist`
 - Root directory: repository root
