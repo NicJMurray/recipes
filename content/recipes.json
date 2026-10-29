@@ -1,0 +1,667 @@
+[
+  {
+    "slug": "boursin-salmon-traybake",
+    "title": "Boursin salmon pasta bake",
+    "sourceChat": "Boursin Salmon Traybake Recipe",
+    "description": "Salmon, sweet roasted tomatoes and garlic-herb Boursin, folded through pasta with spinach, olives and lemon.",
+    "category": "Fish & seafood",
+    "tags": [
+      "Pasta",
+      "Oven"
+    ],
+    "imageKey": "salmon",
+    "servings": "4",
+    "timeLabel": "About 35 min",
+    "totalMinutes": 35,
+    "temperature": "200°C",
+    "ingredients": [
+      {
+        "title": "For the bake",
+        "items": [
+          "4 salmon fillets",
+          "300–350g pasta",
+          "1½ punnets tomatoes",
+          "1 red onion",
+          "1 round garlic & herb Boursin",
+          "1–2 handfuls olives",
+          "2 handfuls spinach",
+          "2 garlic cloves",
+          "Olive oil",
+          "Black pepper",
+          "Chilli flakes",
+          "Juice of ½ lemon"
+        ]
+      },
+      {
+        "title": "Optional",
+        "items": [
+          "Capers",
+          "Basil",
+          "Parsley",
+          "Parmesan"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Prepare the tray",
+        "text": "Preheat the oven to 200°C. Add the tomatoes, red onion, garlic and olives to a lasagne dish with olive oil, black pepper and chilli flakes. Put the Boursin in the centre and arrange the salmon around it."
+      },
+      {
+        "title": "Bake and cook the pasta",
+        "text": "Bake for 20–25 minutes. Meanwhile, boil the pasta until al dente, reserving some pasta water before draining."
+      },
+      {
+        "title": "Make the sauce",
+        "text": "Remove the salmon from the dish. Stir the softened tomatoes, onion and Boursin together into a sauce. Add the spinach and some pasta water."
+      },
+      {
+        "title": "Bring it together",
+        "text": "Flake the salmon back into the dish and toss with the pasta. Loosen with more pasta water as needed. Finish with the lemon juice, black pepper and herbs, with the optional extras if using."
+      }
+    ]
+  },
+  {
+    "slug": "mediterranean-squash-halloumi",
+    "title": "Mediterranean squash & halloumi",
+    "sourceChat": "Mediterranean Squash Recipe",
+    "description": "Roasted butternut squash, aubergine and halloumi with peppers and bulgur that soaks up the stock in the oven.",
+    "category": "Vegetarian",
+    "tags": [
+      "Oven",
+      "Bulgur"
+    ],
+    "imageKey": "squash",
+    "timeLabel": "45 + 15 min in the oven",
+    "temperature": "180°C",
+    "ingredients": [
+      {
+        "title": "For the tray",
+        "items": [
+          "Butternut squash, diced",
+          "Aubergine, diced",
+          "Halloumi, diced",
+          "Olive oil",
+          "Salt and black pepper",
+          "Chilli flakes",
+          "Peppers, sliced",
+          "200g bulgur wheat",
+          "400ml vegetable stock"
+        ]
+      },
+      {
+        "title": "Optional toppings",
+        "items": [
+          "Salmon in a soy and honey marinade",
+          "Fried eggs"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Roast the vegetables and halloumi",
+        "text": "Put the diced butternut squash, aubergine and halloumi in a roasting dish with olive oil, salt, black pepper and chilli flakes. Roast at 180°C for about 45 minutes, until soft."
+      },
+      {
+        "title": "Add the bulgur",
+        "text": "Add the sliced peppers, 200g bulgur wheat and 400ml vegetable stock. Cover the dish with tinfoil."
+      },
+      {
+        "title": "Finish in the oven",
+        "text": "Cook for another 15 minutes, until the stock has been absorbed. Add the optional topping if using."
+      }
+    ],
+    "notes": [
+      "The original recipe does not specify amounts for the squash, aubergine, halloumi or peppers, or a serving count. Those amounts have been left as written."
+    ]
+  },
+  {
+    "slug": "blackened-fish-tacos",
+    "title": "Blackened fish tacos",
+    "sourceChat": "Blackened Fish Tacos",
+    "description": "Spiced white fish in warm corn tortillas, with mango, avocado, lime and a spoonful of Greek yoghurt.",
+    "category": "Fish & seafood",
+    "tags": [
+      "Quick",
+      "Tacos"
+    ],
+    "imageKey": "tacos",
+    "servings": "2 · makes 6 tacos",
+    "prep": "8 min",
+    "cook": "6 min",
+    "timeLabel": "14 min",
+    "totalMinutes": 14,
+    "ingredients": [
+      {
+        "title": "Fish & tortillas",
+        "items": [
+          "250g white fish, such as cod or haddock",
+          "1 tsp smoked paprika",
+          "½ tsp cumin",
+          "1 tsp garlic granules",
+          "½ tsp sugar",
+          "¼ tsp cayenne (optional)",
+          "1 tsp olive oil",
+          "Salt and black pepper",
+          "6 small corn tortillas"
+        ]
+      },
+      {
+        "title": "Mango salsa",
+        "items": [
+          "150g mango",
+          "100g avocado",
+          "½ small red onion",
+          "½ red chilli (optional)",
+          "Zest and juice of 1 lime",
+          "1 tsp honey",
+          "Large handful coriander"
+        ]
+      },
+      {
+        "title": "To serve",
+        "items": [
+          "Greek yoghurt",
+          "Lime wedges (optional)",
+          "Feta (optional)"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Season the fish",
+        "text": "Mix the smoked paprika, cumin, garlic granules, sugar, optional cayenne, salt and pepper. Coat the fish with the olive oil and spice mix."
+      },
+      {
+        "title": "Make the salsa",
+        "text": "Mix the mango, avocado, red onion, optional chilli, lime zest and juice, honey and coriander. Season."
+      },
+      {
+        "title": "Blacken the fish",
+        "text": "Heat a frying pan over a high heat. Cook the fish for 3 minutes on each side, until blackened and cooked through."
+      },
+      {
+        "title": "Fill the tacos",
+        "text": "Warm the tortillas. Fill with Greek yoghurt, flaked fish and mango salsa. Add lime wedges and feta if using."
+      }
+    ]
+  },
+  {
+    "slug": "creamy-mushroom-pie",
+    "title": "Creamy mushroom & leek pie",
+    "sourceChat": "Creamy Mushroom Pie Recipe",
+    "description": "Mushrooms and leeks in a whole-milk, cheddar and Dijon sauce, finished with a golden puff-pastry lid.",
+    "category": "Vegetarian",
+    "tags": [
+      "Oven",
+      "Pie"
+    ],
+    "imageKey": "mushrooms",
+    "servings": "6",
+    "cook": "30–35 min bake",
+    "timeLabel": "30–35 min bake",
+    "temperature": "200°C / 180°C fan",
+    "ingredients": [
+      {
+        "title": "For the sauce",
+        "items": [
+          "60g butter",
+          "60g flour",
+          "750ml whole milk",
+          "3 tbsp crème fraîche",
+          "2 tsp Dijon mustard",
+          "150g cheddar",
+          "Salt and black pepper"
+        ]
+      },
+      {
+        "title": "For the vegetables",
+        "items": [
+          "2 tbsp olive oil, plus butter",
+          "4 banana shallots or 2 onions",
+          "2 large leeks",
+          "500g mushrooms",
+          "Rosemary and thyme",
+          "Salt and black pepper"
+        ]
+      },
+      {
+        "title": "For the top",
+        "items": [
+          "500g puff pastry (top only)",
+          "Milk or beaten egg, for brushing",
+          "Chives, to serve (optional)"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Make the sauce",
+        "text": "Preheat the oven to 200°C (180°C fan). Melt the 60g butter and whisk in the flour. Gradually whisk in the whole milk until smooth and thickened, about 5 minutes. Stir in the crème fraîche, Dijon and cheddar until melted, then season."
+      },
+      {
+        "title": "Soften the shallots and leeks",
+        "text": "Heat the olive oil and butter. Soften the shallots or onions for about 5 minutes. Add the leeks, cover and cook for 5–7 minutes."
+      },
+      {
+        "title": "Cook the mushrooms",
+        "text": "Add the mushrooms, rosemary and thyme. Cook uncovered until the liquid has evaporated and the mushrooms are golden, about 8 minutes. Season."
+      },
+      {
+        "title": "Assemble the pie",
+        "text": "Combine the vegetables and sauce and cool slightly. Fill a glass dish. Top with one layer of pastry, trim and press the edges, cut a vent and brush with milk or beaten egg."
+      },
+      {
+        "title": "Bake",
+        "text": "Bake for 30–35 minutes, until the pastry is crisp and golden. Serve with chives if using."
+      }
+    ]
+  },
+  {
+    "slug": "peanut-soy-prawn-pasta-salad",
+    "title": "Peanut-soy prawn pasta salad",
+    "sourceChat": "Peanut-soy dressing prawn pasta salad",
+    "description": "Prawns, pasta, cucumber and tomatoes in a peanut-soy dressing with honey, ginger and sesame.",
+    "category": "Fish & seafood",
+    "tags": [
+      "Salad",
+      "Pasta"
+    ],
+    "imageKey": "pasta",
+    "servings": "3–4",
+    "timeLabel": "Serve chilled or at room temperature",
+    "ingredients": [
+      {
+        "title": "For the salad",
+        "items": [
+          "250g pasta",
+          "250–300g cooked prawns",
+          "250g cherry tomatoes, halved",
+          "½ cucumber, chopped",
+          "Large handful coriander, roughly chopped",
+          "2 red chillies, sliced (optional)"
+        ]
+      },
+      {
+        "title": "Peanut-soy dressing",
+        "items": [
+          "2 tbsp peanut butter",
+          "60ml light soy sauce",
+          "2 tbsp olive oil",
+          "2 tbsp white wine vinegar",
+          "2 tbsp honey",
+          "1 tbsp sesame seeds",
+          "1 garlic clove, crushed",
+          "1 tbsp grated ginger"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Cook the pasta",
+        "text": "Cook the pasta, then drain and leave to cool."
+      },
+      {
+        "title": "Mix the dressing",
+        "text": "Whisk together the dressing ingredients, adding a splash of water if it is too thick."
+      },
+      {
+        "title": "Toss and serve",
+        "text": "Toss the dressing with the pasta, prawns, tomatoes, cucumber, coriander and optional chilli. Serve chilled or at room temperature."
+      }
+    ],
+    "notes": [
+      "The original chat allows 2 tbsp rice vinegar in place of the white wine vinegar. If using seasoned rice vinegar, reduce the honey slightly."
+    ]
+  },
+  {
+    "slug": "curried-coconut-prawn-udon",
+    "title": "Curried coconut prawn udon",
+    "sourceChat": "Curried Coconut Prawn Udon",
+    "description": "Udon and king prawns in a coconut curry broth, with carrots, Tenderstem broccoli and mango chutney.",
+    "category": "Fish & seafood",
+    "tags": [
+      "Quick",
+      "Noodles"
+    ],
+    "imageKey": "udon",
+    "servings": "2",
+    "prep": "5 min",
+    "cook": "10 min",
+    "timeLabel": "15 min",
+    "totalMinutes": 15,
+    "ingredients": [
+      {
+        "title": "For the broth",
+        "items": [
+          "400g light coconut milk",
+          "2 spring onions",
+          "2 heaped tsp garlic & ginger paste",
+          "2 tsp tomato purée",
+          "2 tsp mild curry powder",
+          "2 tbsp mango chutney",
+          "2 tbsp light soy sauce",
+          "400ml water"
+        ]
+      },
+      {
+        "title": "To finish",
+        "items": [
+          "2 small carrots",
+          "160g Tenderstem broccoli",
+          "300g raw king prawns",
+          "2 × 150g straight-to-wok udon noodles",
+          "Coriander"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Start the curry",
+        "text": "Add a heaped teaspoon of the thick coconut cream from the coconut milk to a saucepan. Fry the white parts of the spring onions, garlic & ginger paste, tomato purée and curry powder for 1–2 minutes."
+      },
+      {
+        "title": "Add the broth and vegetables",
+        "text": "Add the remaining coconut milk, 400ml water, mango chutney and soy sauce. Add the carrots and broccoli and simmer for 4 minutes."
+      },
+      {
+        "title": "Add the prawns and noodles",
+        "text": "Add the prawns and udon. Cook for 2 minutes, until the prawns are cooked and the noodles are hot."
+      },
+      {
+        "title": "Serve",
+        "text": "Serve with the green parts of the spring onions and coriander."
+      }
+    ]
+  },
+  {
+    "slug": "apricot-pepper-rice-sea-bass",
+    "title": "Apricot & pepper rice with sea bass",
+    "sourceChat": "Apricot Pepper Rice Recipe",
+    "description": "Spiced pepper and apricot rice with crispy sea bass, tahini yoghurt, feta and pomegranate.",
+    "category": "Fish & seafood",
+    "tags": [
+      "Quick",
+      "Rice"
+    ],
+    "imageKey": "rice",
+    "servings": "2",
+    "prep": "5 min",
+    "cook": "12 min",
+    "timeLabel": "17 min",
+    "totalMinutes": 17,
+    "ingredients": [
+      {
+        "title": "Rice & fish",
+        "items": [
+          "2 tsp olive oil",
+          "1 red pepper, diced",
+          "1 yellow pepper, diced",
+          "1 small red onion, diced",
+          "30g dried apricots, roughly chopped",
+          "1 tbsp Middle Eastern or Moroccan spice blend",
+          "250g pouch cooked brown rice",
+          "2 sea bass fillets, skin on",
+          "Salt and black pepper"
+        ]
+      },
+      {
+        "title": "Tahini dressing",
+        "items": [
+          "1 tbsp tahini",
+          "½ tsp garlic granules",
+          "100g 0% Greek yoghurt",
+          "Juice of 1 lemon",
+          "1 tsp honey or maple syrup",
+          "1–2 tbsp water"
+        ]
+      },
+      {
+        "title": "To serve",
+        "items": [
+          "40g feta, crumbled",
+          "1 tbsp pomegranate seeds",
+          "Small handful parsley"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Cook the peppers",
+        "text": "Heat half the oil in a large frying pan. Add the peppers, onion and apricots and cook for 5–6 minutes, until soft and starting to caramelise."
+      },
+      {
+        "title": "Add the rice",
+        "text": "Stir in the spice blend for 1 minute. Add the rice, break up any clumps, toss well and season."
+      },
+      {
+        "title": "Prepare the sea bass",
+        "text": "Pat the sea bass dry and season the skin with salt. Heat the remaining oil in a non-stick pan over a medium-high heat."
+      },
+      {
+        "title": "Crisp the fish",
+        "text": "Fry skin-side down for 3–4 minutes, pressing gently so it crisps. Flip and cook for 1–2 minutes, until just cooked."
+      },
+      {
+        "title": "Mix the dressing",
+        "text": "Whisk the dressing ingredients with a pinch of salt, adding water until smooth and drizzleable."
+      },
+      {
+        "title": "Serve",
+        "text": "Serve the rice topped with sea bass, tahini dressing, feta, pomegranate seeds and parsley."
+      }
+    ]
+  },
+  {
+    "slug": "thai-style-watermelon-prawn-salad",
+    "title": "Thai-style watermelon & prawn salad",
+    "sourceChat": "Thai-style Salad Recipe",
+    "description": "Watermelon, avocado, cucumber and prawns with mint, lime, a little chilli and roasted peanuts.",
+    "category": "Fish & seafood",
+    "tags": [
+      "Quick",
+      "Salad"
+    ],
+    "imageKey": "watermelon",
+    "servings": "2",
+    "prep": "10 min",
+    "timeLabel": "10 min prep",
+    "totalMinutes": 10,
+    "ingredients": [
+      {
+        "title": "For the salad",
+        "items": [
+          "1 medium avocado",
+          "¼ cucumber",
+          "350g watermelon",
+          "200g cooked prawns, or protein of choice",
+          "1 tbsp roasted salted peanuts"
+        ]
+      },
+      {
+        "title": "For the dressing",
+        "items": [
+          "1 heaped tsp honey",
+          "Zest and juice of 1 lime",
+          "1 tbsp fish sauce",
+          "1 tsp sesame oil",
+          "1 tsp garlic granules",
+          "½ tsp chilli paste",
+          "1 heaped tsp mint",
+          "1 tbsp coriander",
+          "2 spring onions"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Make the dressing",
+        "text": "Whisk together the honey, lime zest and juice, fish sauce, sesame oil, garlic granules and chilli paste. Stir in the mint, coriander and spring onions."
+      },
+      {
+        "title": "Toss the salad",
+        "text": "Mix the avocado, cucumber, watermelon and prawns, then toss with the dressing."
+      },
+      {
+        "title": "Finish",
+        "text": "Scatter over the peanuts. Serve immediately or chill for 10 minutes."
+      }
+    ]
+  },
+  {
+    "slug": "harissa-tuna-pitta",
+    "title": "Harissa tuna pitta",
+    "sourceChat": "Harissa Tuna Pitta Recipe",
+    "description": "A warm wholemeal pitta stuffed with harissa-yoghurt tuna and a chopped cucumber, avocado and parsley salad.",
+    "category": "Fish & seafood",
+    "tags": [
+      "Quick",
+      "Lunch"
+    ],
+    "imageKey": "pitta",
+    "servings": "1",
+    "prep": "8 min",
+    "timeLabel": "8 min prep",
+    "totalMinutes": 8,
+    "ingredients": [
+      {
+        "title": "For the pitta",
+        "items": [
+          "20g red onion",
+          "Juice of ½ lemon",
+          "160g can tuna in spring water or brine, drained",
+          "2 heaped tbsp Greek or 0% yoghurt",
+          "1 tsp harissa paste",
+          "40g cucumber",
+          "Small handful parsley",
+          "¼ avocado",
+          "1 wholemeal pitta",
+          "Salt and black pepper"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Quick-pickle the onion",
+        "text": "Toss the red onion with half the lemon juice and a pinch of salt. Leave for 5 minutes."
+      },
+      {
+        "title": "Mix the tuna",
+        "text": "Mix the tuna with the yoghurt, harissa, salt and black pepper."
+      },
+      {
+        "title": "Make the salad",
+        "text": "Mix the cucumber, parsley, avocado, onion and remaining lemon juice. Season with salt and black pepper."
+      },
+      {
+        "title": "Fill the pitta",
+        "text": "Toast the pitta, slice it open and stuff with the tuna and salad. Eat warm and fresh."
+      }
+    ]
+  },
+  {
+    "slug": "cheddar-jalapeno-egg-burritos",
+    "title": "Cheddar & jalapeño egg burritos",
+    "sourceChat": "Cheddar Jalapeño Egg Burritos",
+    "description": "Soft scrambled eggs, mature cheddar, jalapeños and greens in wraps to make ahead and tuck away.",
+    "category": "Vegetarian",
+    "tags": [
+      "Breakfast",
+      "Make ahead"
+    ],
+    "imageKey": "burrito",
+    "servings": "4",
+    "prep": "15 min",
+    "cook": "8 min",
+    "timeLabel": "23 min",
+    "totalMinutes": 23,
+    "ingredients": [
+      {
+        "title": "For the burritos",
+        "items": [
+          "6 medium eggs",
+          "1 tsp olive oil or butter",
+          "1 small green pepper, finely diced",
+          "2 spring onions, finely sliced",
+          "1 tbsp chopped pickled jalapeños",
+          "Large handful spinach, finely chopped",
+          "80g mature cheddar, grated",
+          "1–2 tsp hot sauce",
+          "4 wholegrain wraps",
+          "Salt and black pepper"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Whisk the eggs",
+        "text": "Whisk the eggs with salt and black pepper."
+      },
+      {
+        "title": "Soften the vegetables",
+        "text": "Heat the oil or butter in a non-stick pan over a medium heat. Cook the pepper, spring onions, jalapeños and spinach for 2–3 minutes, until softened."
+      },
+      {
+        "title": "Scramble",
+        "text": "Add the eggs and gently scramble until just set. Remove from the heat and stir through the cheddar and hot sauce."
+      },
+      {
+        "title": "Roll the burritos",
+        "text": "Spoon into the wraps, fold in the sides and roll tightly. Wrap in foil or baking parchment."
+      }
+    ],
+    "notes": [
+      "Keep in the fridge for up to 3 days or freeze for up to 1 month. Reheat in the oven, toaster oven or air fryer until piping hot, as noted in the original recipe."
+    ]
+  },
+  {
+    "slug": "crispy-chilli-egg-smash",
+    "title": "Crispy chilli egg smash",
+    "sourceChat": "Crispy Chilli Egg Recipe",
+    "description": "Jammy eggs mashed with cottage cheese, tomatoes, spring onion and crispy chilli oil, piled onto sourdough.",
+    "category": "Vegetarian",
+    "tags": [
+      "Quick",
+      "Breakfast"
+    ],
+    "imageKey": "egg",
+    "servings": "1",
+    "prep": "6 min",
+    "cook": "6 min",
+    "timeLabel": "12 min",
+    "totalMinutes": 12,
+    "ingredients": [
+      {
+        "title": "For the toast",
+        "items": [
+          "2 medium eggs",
+          "1 heaped tbsp cottage cheese",
+          "1 spring onion",
+          "5 cherry tomatoes",
+          "Small handful parsley or chives",
+          "1 tsp crispy chilli oil, or more",
+          "1 × 45g slice sourdough",
+          "Salt and black pepper"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Cook the eggs",
+        "text": "Boil the eggs for 6–7 minutes, then cool under cold water."
+      },
+      {
+        "title": "Make the smash",
+        "text": "Peel and roughly mash the eggs with the cottage cheese, spring onion, tomatoes, herbs, chilli oil, salt and black pepper. Keep the mixture slightly chunky."
+      },
+      {
+        "title": "Serve on toast",
+        "text": "Toast the sourdough and spoon the egg mixture on top."
+      }
+    ],
+    "notes": [
+      "The original recipe gives 6 minutes of cooking time in its heading and 6–7 minutes for boiling the eggs in the method. Both are preserved.",
+      "The original recipe notes up to 3 days in the fridge."
+    ]
+  }
+]
