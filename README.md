@@ -35,4 +35,9 @@ All content and links work without JavaScript. Search/filter controls and ingred
 See `DEPLOYMENT.md` for the GitHub and Cloudflare deployment mapping. The homepage card and public catalog live separately in `NicJMurray/homepage`.
 
 
-Mrs Murray's Lasagne uses the 30 October 2026 transcript and accompanying ingredient screenshot, with courgette omitted as requested. The text-free page ending keeps 48px bottom space; removed introduction and footer copy should stay removed.
+Mrs Murray's Lasagne uses the 30 October 2026 transcript and accompanying ingredient screenshot, with courgette omitted as requested. The text-free page ending keeps an 80px empty spacer after the page content; removed introduction and footer copy should stay removed.
+
+
+The stylesheet URL includes a build-time content hash so published spacing changes are picked up on refresh.
+
+Mrs Murray's Lasagne uses a locally hosted AI-generated vegetarian lasagne illustration, labelled as illustrative. Stock-photo credits remain on the other recipes.

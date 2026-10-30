@@ -17,8 +17,9 @@ for(const recipe of recipes){
  assert.match(recipe.slug,/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
  assert.ok(recipe.ingredients.length&&recipe.ingredients.every(g=>g.items.length));
  assert.ok(recipe.steps.length&&recipe.steps.every(s=>s.title&&s.text));
- const photo=photos[recipe.imageKey];assert.ok(photo?.id&&photo.by&&photo.page&&photo.alt);
- assert.equal(new URL(photo.page).hostname,'unsplash.com');
+ const photo=photos[recipe.imageKey];assert.ok(photo?.alt&&photo.by&&(photo.id||photo.src));
+ if(photo.generated) await access(path.join(out,photo.src));
+ else assert.equal(new URL(photo.page).hostname,'unsplash.com');
  const html=await readFile(path.join(out,'recipes',recipe.slug,'index.html'),'utf8');
  const structured=html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
  assert.ok(structured,'Every recipe needs structured data.');
@@ -53,3 +54,4 @@ const lasagne=recipes.find(r=>r.slug==='mrs-murrays-lasagne');
 assert.equal(lasagne.title,"Mrs Murray's Lasagne");
 assert.ok(!/courgette/i.test(JSON.stringify(lasagne)));
 assert.ok(!hub.includes('<footer'),'Keep the footer text removed.');
+

@@ -1,13 +1,74 @@
 {
-  "salmon": {"id":"photo-1770678724725-f1fbe7ddfbca","by":"Brelyn Bashrum","page":"https://unsplash.com/photos/83LnF3AC1rE","alt":"Salmon pasta served at the table"},
-  "squash": {"id":"photo-1756220072849-0ccb7d25fe8b","by":"Elina J. Pilz","page":"https://unsplash.com/photos/QgZ5nN6hDlQ","alt":"Butternut squash and onions at a market"},
-  "tacos": {"id":"photo-1660180750968-4fbc84789a96","by":"Federico Ramirez","page":"https://unsplash.com/photos/Zggo6DP_P88","alt":"Fish tacos with fresh toppings"},
-  "mushrooms": {"id":"photo-1779202406286-7198462a8492","by":"Martin Mendoza","page":"https://unsplash.com/photos/H0p2dbXw-Vs","alt":"Fresh button mushrooms in a bowl"},
-  "pasta": {"id":"photo-1516684902511-1e07238471ad","by":"Vinn Koonyosying","page":"https://unsplash.com/photos/uKrsWihnRRM","alt":"Prawn pasta in a white bowl"},
-  "udon": {"id":"photo-1701856625684-04ba3eeed0d6","by":"Kawê Rodrigues","page":"https://unsplash.com/photos/yUEPARtTdmA","alt":"A bowl of prawn noodles and vegetables"},
-  "rice": {"id":"photo-1666819691822-29a09f0992e5","by":"Leanna Myers","page":"https://unsplash.com/photos/U5goTEzbOzU","alt":"A bowl of rice and vegetables"},
-  "watermelon": {"id":"photo-1649825319037-f30ea5b611c7","by":"Frames For Your Heart","page":"https://unsplash.com/photos/czHTMU6T50s","alt":"A watermelon salad with a wooden serving spoon"},
-  "pitta": {"id":"photo-1514518189759-94d8ee01ecf1","by":"Heather Ford","page":"https://unsplash.com/photos/nTHMvQzQt_A","alt":"Tuna on pitta bread with fresh toppings"},
-  "burrito": {"id":"photo-1711488735428-27c6757beb5c","by":"Gaby Aziz","page":"https://unsplash.com/photos/gBqlz19UlnI","alt":"A filled burrito served with rice"},
-  "egg": {"id":"photo-1559332167-dd24746aa6f5","by":"Krisztina Papp","page":"https://unsplash.com/photos/wIOBD2k3agQ","alt":"Boiled eggs and toast on a white plate"}
+  "salmon": {
+    "id": "photo-1770678724725-f1fbe7ddfbca",
+    "by": "Brelyn Bashrum",
+    "page": "https://unsplash.com/photos/83LnF3AC1rE",
+    "alt": "Salmon pasta served at the table"
+  },
+  "squash": {
+    "id": "photo-1756220072849-0ccb7d25fe8b",
+    "by": "Elina J. Pilz",
+    "page": "https://unsplash.com/photos/QgZ5nN6hDlQ",
+    "alt": "Butternut squash and onions at a market"
+  },
+  "tacos": {
+    "id": "photo-1660180750968-4fbc84789a96",
+    "by": "Federico Ramirez",
+    "page": "https://unsplash.com/photos/Zggo6DP_P88",
+    "alt": "Fish tacos with fresh toppings"
+  },
+  "mushrooms": {
+    "id": "photo-1779202406286-7198462a8492",
+    "by": "Martin Mendoza",
+    "page": "https://unsplash.com/photos/H0p2dbXw-Vs",
+    "alt": "Fresh button mushrooms in a bowl"
+  },
+  "pasta": {
+    "id": "photo-1516684902511-1e07238471ad",
+    "by": "Vinn Koonyosying",
+    "page": "https://unsplash.com/photos/uKrsWihnRRM",
+    "alt": "Prawn pasta in a white bowl"
+  },
+  "udon": {
+    "id": "photo-1701856625684-04ba3eeed0d6",
+    "by": "Kawê Rodrigues",
+    "page": "https://unsplash.com/photos/yUEPARtTdmA",
+    "alt": "A bowl of prawn noodles and vegetables"
+  },
+  "rice": {
+    "id": "photo-1666819691822-29a09f0992e5",
+    "by": "Leanna Myers",
+    "page": "https://unsplash.com/photos/U5goTEzbOzU",
+    "alt": "A bowl of rice and vegetables"
+  },
+  "watermelon": {
+    "id": "photo-1649825319037-f30ea5b611c7",
+    "by": "Frames For Your Heart",
+    "page": "https://unsplash.com/photos/czHTMU6T50s",
+    "alt": "A watermelon salad with a wooden serving spoon"
+  },
+  "pitta": {
+    "id": "photo-1514518189759-94d8ee01ecf1",
+    "by": "Heather Ford",
+    "page": "https://unsplash.com/photos/nTHMvQzQt_A",
+    "alt": "Tuna on pitta bread with fresh toppings"
+  },
+  "burrito": {
+    "id": "photo-1711488735428-27c6757beb5c",
+    "by": "Gaby Aziz",
+    "page": "https://unsplash.com/photos/gBqlz19UlnI",
+    "alt": "A filled burrito served with rice"
+  },
+  "egg": {
+    "id": "photo-1559332167-dd24746aa6f5",
+    "by": "Krisztina Papp",
+    "page": "https://unsplash.com/photos/wIOBD2k3agQ",
+    "alt": "Boiled eggs and toast on a white plate"
+  },
+  "lasagne": {
+    "src": "/images/mrs-murrays-lasagne.webp",
+    "by": "AI-generated illustration",
+    "generated": true,
+    "alt": "Vegetarian lasagne with butternut squash, aubergine and spinach"
+  }
 }

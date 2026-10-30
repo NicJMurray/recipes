@@ -1,19 +1,22 @@
 import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.join(root, 'dist');
 const recipes = JSON.parse(await readFile(path.join(root, 'content/recipes.json'), 'utf8'));
 const photos = JSON.parse(await readFile(path.join(root, 'content/photos.json'), 'utf8'));
+const styleVersion = createHash('sha256').update(await readFile(path.join(root, 'public/style.css'))).digest('hex').slice(0,12);
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const url = recipe => `/recipes/${recipe.slug}/`;
-const imageUrl = (photo, width) => `https://images.unsplash.com/${photo.id}?auto=format&fit=crop&w=${width}&q=80`;
+const imageUrl = (photo, width) => photo.src ? `https://recipes.njmurray.com${photo.src}` : `https://images.unsplash.com/${photo.id}?auto=format&fit=crop&w=${width}&q=80`;
 const arrow = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const plate = '<svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="10" stroke="currentColor" stroke-width="1.3"/><circle cx="20" cy="20" r="6.5" stroke="currentColor" stroke-width="1"/><path d="M4 7v7m3-7v7m-6-7v7c0 4 6 4 6 0M4 17v16M35 7c-4 3-4 12 0 12V7Zm0 12v14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 function photoMarkup(recipe, {hero = false, eager = false} = {}) {
   const photo = photos[recipe.imageKey];
+  if (photo.src) return `<img src="${esc(photo.src)}" width="1400" height="1050" alt="${esc(photo.alt)}" ${eager?'fetchpriority="high"':'loading="lazy"'} decoding="async">`;
   return `<img src="${imageUrl(photo, hero ? 1600 : 720)}" srcset="${[480,720,1100,1600].map(w=>`${imageUrl(photo,w)} ${w}w`).join(', ')}" sizes="${hero ? '(max-width: 760px) 100vw, 1120px' : '(max-width: 600px) 100vw, (max-width: 960px) 50vw, 380px'}" width="${hero?1600:720}" height="${hero?900:540}" alt="${esc(photo.alt)}" ${eager?'fetchpriority="high"':'loading="lazy"'} decoding="async">`;
 }
 
@@ -36,10 +39,11 @@ function layout({title, description, body, slug = '', schema = null}) {
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="${slug?'article':'website'}"><meta property="og:url" content="${canonical}">
 <meta property="og:image" content="${imageUrl(photos[recipes.find(r=>r.slug===slug)?.imageKey || 'salmon'],1200)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://images.unsplash.com">
-<link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script>${schema?`<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`:''}
+<link rel="stylesheet" href="/style.css?v=${styleVersion}"><script defer src="/app.js"></script>${schema?`<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`:''}
 </head><body><a class="skip" href="#main">Skip to content</a>
 <header class="site-header wrap"><a class="wordmark" href="/">${plate}<span>My <em>recipe book</em></span></a><nav aria-label="Main"><a href="/" ${slug?'':'aria-current="page"'}>The recipes</a><a href="https://njmurray.com/">njmurray ${arrow}</a></nav></header>
 ${body}
+<div class="page-end-space" aria-hidden="true"></div>
 </body></html>`;
 }
 
@@ -59,7 +63,7 @@ function recipePage(recipe) {
   return layout({title:recipe.title,description:recipe.description,slug:recipe.slug,schema,body:`
 <main id="main" class="wrap recipe-page" data-slug="${esc(recipe.slug)}"><a class="back-link" href="/">${arrow} All recipes</a>
 <section class="recipe-intro"><p class="eyebrow">${esc(recipe.category)} <span> / </span> ${esc(recipe.tags.join(' · '))}</p><h1>${esc(recipe.title)}</h1><p class="recipe-description">${esc(recipe.description)}</p><dl class="recipe-facts">${recipe.servings?`<div><dt>Serves</dt><dd>${esc(recipe.servings)}</dd></div>`:''}${recipe.prep?`<div><dt>Prep</dt><dd>${esc(recipe.prep)}</dd></div>`:''}${recipe.cook?`<div><dt>Cook</dt><dd>${esc(recipe.cook)}</dd></div>`:!recipe.prep?`<div><dt>Time</dt><dd>${esc(recipe.timeLabel)}</dd></div>`:''}${recipe.temperature?`<div><dt>Oven</dt><dd>${esc(recipe.temperature)}</dd></div>`:''}</dl></section>
-<figure class="recipe-hero">${photoMarkup(recipe,{hero:true,eager:true})}<figcaption>Illustrative photograph · <a href="${esc(photo.page)}" target="_blank" rel="noopener noreferrer">${esc(photo.by)} / Unsplash</a></figcaption></figure>
+<figure class="recipe-hero">${photoMarkup(recipe,{hero:true,eager:true})}${photo.generated ? `<figcaption>Illustrative image · AI-generated</figcaption>` : `<figcaption>Illustrative photograph · <a href="${esc(photo.page)}" target="_blank" rel="noopener noreferrer">${esc(photo.by)} / Unsplash</a></figcaption>`}</figure>
 <div class="recipe-actions"><div><a href="#ingredients">Ingredients</a><a href="#method">Method ${arrow}</a></div><button type="button" id="print-recipe"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Print recipe</button></div>
 <div class="recipe-body"><aside class="ingredients" id="ingredients"><div class="ingredient-heading"><h2>Ingredients</h2><button type="button" id="reset-ingredients">Clear ticks</button></div><p class="helper">Tick things off as you go.</p><form aria-label="Ingredient checklist">${ingredients}</form><p class="checklist-feedback sr-only" aria-live="polite"></p></aside>
 <section class="method" id="method" aria-labelledby="method-title"><p class="eyebrow">LET’S MAKE IT</p><h2 id="method-title">The method</h2><ol>${recipe.steps.map((step,i)=>`<li><span class="step-number" aria-hidden="true">${String(i+1).padStart(2,'0')}</span><div><h3>${esc(step.title)}</h3><p>${esc(step.text)}</p></div></li>`).join('')}</ol>${recipe.notes?.length?`<div class="recipe-notes"><h3>A note from the recipe book</h3>${recipe.notes.map(n=>`<p>${esc(n)}</p>`).join('')}</div>`:''}</section></div>
@@ -71,9 +75,10 @@ await mkdir(out,{recursive:true});
 await cp(path.join(root,'public'),out,{recursive:true});
 await writeFile(path.join(out,'index.html'),hub);
 for (const recipe of recipes) {const dir=path.join(out,'recipes',recipe.slug);await mkdir(dir,{recursive:true});await writeFile(path.join(dir,'index.html'),recipePage(recipe));}
-const credits = layout({title:'Photography credits',description:'The photographers behind the illustrative images in Nic’s recipe book.',body:`<main id="main" class="wrap credits-page"><a class="back-link" href="/">${arrow} All recipes</a><p class="eyebrow">BEHIND THE PICTURES</p><h1>Photography.</h1><p class="recipe-description">These photographs show related dishes and ingredients. They are illustrative, rather than photographs of these exact recipes.</p><div class="credits-list">${Object.values(photos).map(p=>`<div><h2>${esc(p.alt)}</h2><a href="${esc(p.page)}" target="_blank" rel="noopener noreferrer">${esc(p.by)} on Unsplash ${arrow}</a></div>`).join('')}</div><p>All selected photographs are available under the <a href="https://unsplash.com/license">Unsplash License</a>.</p></main>`});
+const credits = layout({title:'Photography credits',description:'The photographers behind the illustrative images in Nic’s recipe book.',body:`<main id="main" class="wrap credits-page"><a class="back-link" href="/">${arrow} All recipes</a><p class="eyebrow">BEHIND THE PICTURES</p><h1>Photography.</h1><p class="recipe-description">These photographs show related dishes and ingredients. They are illustrative, rather than photographs of these exact recipes.</p><div class="credits-list">${Object.values(photos).filter(p=>!p.generated).map(p=>`<div><h2>${esc(p.alt)}</h2><a href="${esc(p.page)}" target="_blank" rel="noopener noreferrer">${esc(p.by)} on Unsplash ${arrow}</a></div>`).join('')}</div><p>The vegetarian lasagne illustration is AI-generated. All selected photographs are available under the <a href="https://unsplash.com/license">Unsplash License</a>.</p></main>`});
 await mkdir(path.join(out,'photography-credits'),{recursive:true});await writeFile(path.join(out,'photography-credits/index.html'),credits);
 await writeFile(path.join(out,'404.html'),layout({title:'Recipe not found',description:'Find your way back to the recipe collection.',body:`<main id="main" class="wrap not-found"><p class="eyebrow">404</p><h1>Lost in the kitchen?</h1><p>That recipe isn’t here.</p><a href="/">Back to all recipes ${arrow}</a></main>`}));
 await writeFile(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/',...recipes.map(url),'/photography-credits/'].map(p=>`<url><loc>https://recipes.njmurray.com${p}</loc></url>`).join('')}</urlset>`);
 console.log(`Built hub, ${recipes.length} recipe pages, photography credits and 404 page.`);
+
 
