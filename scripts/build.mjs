@@ -31,16 +31,15 @@ function layout({title, description, body, slug = '', schema = null}) {
   const canonical = `https://recipes.njmurray.com/${slug ? `recipes/${slug}/` : ''}`;
   return `<!doctype html>
 <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(title)} · Nic’s recipe book</title><meta name="description" content="${esc(description)}">
+<title>${esc(title)} · My recipe book</title><meta name="description" content="${esc(description)}">
 <meta name="theme-color" content="#f8f7f2"><link rel="canonical" href="${canonical}">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="${slug?'article':'website'}"><meta property="og:url" content="${canonical}">
 <meta property="og:image" content="${imageUrl(photos[recipes.find(r=>r.slug===slug)?.imageKey || 'salmon'],1200)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://images.unsplash.com">
 <link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script>${schema?`<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`:''}
 </head><body><a class="skip" href="#main">Skip to content</a>
-<header class="site-header wrap"><a class="wordmark" href="/">${plate}<span>Nic’s <em>recipe book</em></span></a><nav aria-label="Main"><a href="/" ${slug?'':'aria-current="page"'}>The recipes</a><a href="https://njmurray.com/">njmurray ${arrow}</a></nav></header>
+<header class="site-header wrap"><a class="wordmark" href="/">${plate}<span>My <em>recipe book</em></span></a><nav aria-label="Main"><a href="/" ${slug?'':'aria-current="page"'}>The recipes</a><a href="https://njmurray.com/">njmurray ${arrow}</a></nav></header>
 ${body}
-<footer class="site-footer wrap"><a class="footer-brand" href="/">Good food, made again.</a><p>A personal collection by <a href="https://njmurray.com/">Nic Murray</a>.</p><span class="photo-note">Illustrative photography from <a href="/photography-credits/">Unsplash</a>.</span></footer>
 </body></html>`;
 }
 
