@@ -8,6 +8,8 @@ const out = path.join(root, 'dist');
 const recipes = JSON.parse(await readFile(path.join(root, 'content/recipes.json'), 'utf8'));
 const photos = JSON.parse(await readFile(path.join(root, 'content/photos.json'), 'utf8'));
 const styleVersion = createHash('sha256').update(await readFile(path.join(root, 'public/style.css'))).digest('hex').slice(0,12);
+const plannerVersion = createHash('sha256').update(await readFile(path.join(root, 'public/planner.js'))).update(await readFile(path.join(root, 'public/shopping-list.js'))).digest('hex').slice(0,12);
+const shoppingMapping = JSON.parse(await readFile(path.join(root, 'content/shopping.json'), 'utf8'));
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const url = recipe => `/recipes/${recipe.slug}/`;
 const imageUrl = (photo, width) => photo.src ? `https://recipes.njmurray.com${photo.src}` : `https://images.unsplash.com/${photo.id}?auto=format&fit=crop&w=${width}&q=80`;
@@ -30,8 +32,8 @@ function card(recipe, index, related = false) {
   </article>`;
 }
 
-function layout({title, description, body, slug = '', schema = null}) {
-  const canonical = `https://recipes.njmurray.com/${slug ? `recipes/${slug}/` : ''}`;
+function layout({title, description, body, slug = '', pathname = '', schema = null, scripts = ''}) {
+  const canonical = `https://recipes.njmurray.com${pathname || (slug ? `/recipes/${slug}/` : '/')}`;
   return `<!doctype html>
 <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)} · My recipe book</title><meta name="description" content="${esc(description)}">
@@ -39,9 +41,9 @@ function layout({title, description, body, slug = '', schema = null}) {
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="${slug?'article':'website'}"><meta property="og:url" content="${canonical}">
 <meta property="og:image" content="${imageUrl(photos[recipes.find(r=>r.slug===slug)?.imageKey || 'salmon'],1200)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://images.unsplash.com">
-<link rel="stylesheet" href="/style.css?v=${styleVersion}"><script defer src="/app.js"></script>${schema?`<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`:''}
+<link rel="stylesheet" href="/style.css?v=${styleVersion}"><script defer src="/app.js"></script>${scripts}${schema?`<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`:''}
 </head><body><a class="skip" href="#main">Skip to content</a>
-<header class="site-header wrap"><a class="wordmark" href="/">${plate}<span>My <em>recipe book</em></span></a><nav aria-label="Main"><a href="/" ${slug?'':'aria-current="page"'}>The recipes</a><a href="https://njmurray.com/">njmurray ${arrow}</a></nav></header>
+<header class="site-header wrap"><a class="wordmark" href="/">${plate}<span>My <em>recipe book</em></span></a><nav aria-label="Main"><a href="/" ${slug || pathname ? '' : 'aria-current="page"'}>The recipes</a><a class="nav-planner" href="/meal-planner/" ${pathname === '/meal-planner/' ? 'aria-current="page"' : ''}>Meal planner</a><a href="https://njmurray.com/">njmurray ${arrow}</a></nav></header>
 ${body}
 <div class="page-end-space" aria-hidden="true"></div>
 </body></html>`;
@@ -64,7 +66,7 @@ function recipePage(recipe) {
 <main id="main" class="wrap recipe-page" data-slug="${esc(recipe.slug)}"><a class="back-link" href="/">${arrow} All recipes</a>
 <section class="recipe-intro"><p class="eyebrow">${esc(recipe.category)} <span> / </span> ${esc(recipe.tags.join(' · '))}</p><h1>${esc(recipe.title)}</h1><p class="recipe-description">${esc(recipe.description)}</p><dl class="recipe-facts">${recipe.servings?`<div><dt>Serves</dt><dd>${esc(recipe.servings)}</dd></div>`:''}${recipe.prep?`<div><dt>Prep</dt><dd>${esc(recipe.prep)}</dd></div>`:''}${recipe.cook?`<div><dt>Cook</dt><dd>${esc(recipe.cook)}</dd></div>`:!recipe.prep?`<div><dt>Time</dt><dd>${esc(recipe.timeLabel)}</dd></div>`:''}${recipe.temperature?`<div><dt>Oven</dt><dd>${esc(recipe.temperature)}</dd></div>`:''}</dl></section>
 <figure class="recipe-hero">${photoMarkup(recipe,{hero:true,eager:true})}${photo.generated ? `<figcaption>Illustrative image · AI-generated</figcaption>` : `<figcaption>Illustrative photograph · <a href="${esc(photo.page)}" target="_blank" rel="noopener noreferrer">${esc(photo.by)} / Unsplash</a></figcaption>`}</figure>
-<div class="recipe-actions"><div><a href="#ingredients">Ingredients</a><a href="#method">Method ${arrow}</a></div><button type="button" id="print-recipe"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Print recipe</button></div>
+<div class="recipe-actions"><div><a href="#ingredients">Ingredients</a><a href="#method">Method ${arrow}</a><a href="/meal-planner/?add=${esc(recipe.slug)}">Plan this meal <span aria-hidden="true">+</span></a></div><button type="button" id="print-recipe"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Print recipe</button></div>
 <div class="recipe-body"><aside class="ingredients" id="ingredients"><div class="ingredient-heading"><h2>Ingredients</h2><button type="button" id="reset-ingredients">Clear ticks</button></div><p class="helper">Tick things off as you go.</p><form aria-label="Ingredient checklist">${ingredients}</form><p class="checklist-feedback sr-only" aria-live="polite"></p></aside>
 <section class="method" id="method" aria-labelledby="method-title"><p class="eyebrow">LET’S MAKE IT</p><h2 id="method-title">The method</h2><ol>${recipe.steps.map((step,i)=>`<li><span class="step-number" aria-hidden="true">${String(i+1).padStart(2,'0')}</span><div><h3>${esc(step.title)}</h3><p>${esc(step.text)}</p></div></li>`).join('')}</ol>${recipe.notes?.length?`<div class="recipe-notes"><h3>A note from the recipe book</h3>${recipe.notes.map(n=>`<p>${esc(n)}</p>`).join('')}</div>`:''}</section></div>
 <section class="related" aria-labelledby="related-heading"><div class="related-heading"><h2 id="related-heading">Something for next time.</h2><a href="/">All recipes ${arrow}</a></div><div class="recipe-grid">${related.map((r,i)=>card(r,i,true)).join('')}</div></section></main>`});
@@ -78,7 +80,40 @@ for (const recipe of recipes) {const dir=path.join(out,'recipes',recipe.slug);aw
 const credits = layout({title:'Photography credits',description:'The photographers behind the illustrative images in Nic’s recipe book.',body:`<main id="main" class="wrap credits-page"><a class="back-link" href="/">${arrow} All recipes</a><p class="eyebrow">BEHIND THE PICTURES</p><h1>Photography.</h1><p class="recipe-description">These photographs show related dishes and ingredients. They are illustrative, rather than photographs of these exact recipes.</p><div class="credits-list">${Object.values(photos).filter(p=>!p.generated).map(p=>`<div><h2>${esc(p.alt)}</h2><a href="${esc(p.page)}" target="_blank" rel="noopener noreferrer">${esc(p.by)} on Unsplash ${arrow}</a></div>`).join('')}</div><p>The vegetarian lasagne illustration is AI-generated. All selected photographs are available under the <a href="https://unsplash.com/license">Unsplash License</a>.</p></main>`});
 await mkdir(path.join(out,'photography-credits'),{recursive:true});await writeFile(path.join(out,'photography-credits/index.html'),credits);
 await writeFile(path.join(out,'404.html'),layout({title:'Recipe not found',description:'Find your way back to the recipe collection.',body:`<main id="main" class="wrap not-found"><p class="eyebrow">404</p><h1>Lost in the kitchen?</h1><p>That recipe isn’t here.</p><a href="/">Back to all recipes ${arrow}</a></main>`}));
-await writeFile(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/',...recipes.map(url),'/photography-credits/'].map(p=>`<url><loc>https://recipes.njmurray.com${p}</loc></url>`).join('')}</urlset>`);
-console.log(`Built hub, ${recipes.length} recipe pages, photography credits and 404 page.`);
+const plannerData = {recipes: recipes.map(({slug,title,servings,ingredients}) => ({slug,title,...(servings ? {servings} : {}),ingredients})), mapping: shoppingMapping};
+const planner = layout({title:'Meal planner', description:'Choose recipes for the week and make one combined shopping list.', pathname:'/meal-planner/', scripts:`<script type="module" src="/planner.js?v=${plannerVersion}"></script>`, body:`
+<main id="main" class="wrap planner-page">
+  <div class="planner-intro"><div><h1>Meal planner.</h1><p>Choose this week’s meals. Make one shopping list.</p></div><a class="shopping-jump" href="#shopping-heading">Shopping list ${arrow}</a></div>
+  <noscript><p class="planner-notice">The meal planner needs JavaScript. You can still browse <a href="/">all recipes</a> and their original ingredients.</p></noscript>
+  <div id="planner-app" class="planner-layout" hidden>
+    <div class="planning-column">
+      <section class="weekly-plan" aria-labelledby="plan-heading"><div class="planner-section-heading"><h2 id="plan-heading">Your meals <span id="plan-count">0 meals</span></h2><div class="plan-clear-actions"><button type="button" class="text-button" id="undo-clear" hidden>Undo</button><button type="button" class="text-button" id="clear-plan">Clear plan</button></div></div>
+        <div id="plan-empty" class="plan-empty"><span class="empty-plus" aria-hidden="true">+</span><p>A little planning, a good week of food.</p><a href="#choose-recipes">Choose a recipe ${arrow}</a></div>
+        <ol id="planned-meals" class="planned-meals" aria-label="Planned meals"></ol>
+        <p class="planner-help">One batch uses the full recipe quantities. <span id="plan-storage">Saved on this device.</span></p>
+      </section>
+      <section id="choose-recipes" class="recipe-picker" aria-labelledby="picker-heading"><div class="planner-section-heading"><h2 id="picker-heading">Choose recipes</h2><label class="picker-search"><span class="sr-only">Find recipes for your plan</span><input id="planner-search" type="search" placeholder="Find a recipe…" autocomplete="off"></label></div>
+        <div class="picker-grid">${recipes.map(recipe => `<article class="pick-recipe" data-pick-recipe data-search="${esc([recipe.title,...recipe.ingredients.flatMap(g=>g.items)].join(' '))}"><a class="pick-photo" href="${url(recipe)}" tabindex="-1" aria-hidden="true">${photoMarkup(recipe)}</a><div class="pick-copy"><h3><a href="${url(recipe)}">${esc(recipe.title)}</a></h3><p>${esc(recipe.timeLabel || recipe.category)}</p></div><button type="button" class="add-meal" data-add="${esc(recipe.slug)}" aria-label="Add ${esc(recipe.title)} to meal plan"><span class="add-circle" aria-hidden="true">+</span><span class="added-count" data-added-count></span></button></article>`).join('')}</div>
+        <p id="picker-empty" class="planner-help" role="status" hidden>No recipes match. Try another ingredient.</p>
+      </section>
+    </div>
+    <aside class="shopping-panel" aria-labelledby="shopping-heading"><div class="planner-section-heading"><h2 id="shopping-heading" tabindex="-1">Shopping list</h2><button type="button" class="text-button" id="clear-shopping-ticks">Reset ticks</button></div>
+      <p id="shopping-count" class="planner-help" role="status" aria-live="polite">Your list will appear here.</p>
+      <div class="shopping-actions"><button type="button" class="planner-button" id="copy-shopping">Copy list</button><button type="button" class="planner-button secondary" id="print-shopping">Print</button></div>
+      <label class="optional-toggle"><input type="checkbox" id="include-optional"><span>Include optional extras</span></label>
+      <p class="shopping-explainer">Amounts stay true to the recipes. Open “Recipe amounts” for the original wording.</p>
+      <p id="shopping-empty" class="shopping-empty">Add a recipe to start your list.</p>
+      <div id="shopping-groups"></div>
+      <div id="copy-fallback" class="copy-fallback" hidden><label for="shopping-text">Select and copy your list</label><textarea id="shopping-text" rows="8" readonly></textarea></div>
+    </aside>
+  </div>
+  <p id="planner-feedback" class="planner-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+  <script type="application/json" id="planner-data">${JSON.stringify(plannerData).replace(/</g,'\\u003c')}</script>
+</main>`});
+await mkdir(path.join(out,'meal-planner'),{recursive:true});
+await writeFile(path.join(out,'meal-planner/index.html'),planner);
+await writeFile(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/','/meal-planner/',...recipes.map(url),'/photography-credits/'].map(p=>`<url><loc>https://recipes.njmurray.com${p}</loc></url>`).join('')}</urlset>`);
+console.log(`Built hub, meal planner, ${recipes.length} recipe pages, photography credits and 404 page.`);
+
 
 

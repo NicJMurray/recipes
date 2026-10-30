@@ -1,0 +1,1478 @@
+{
+  "300–350g pasta": [
+    {
+      "name": "Pasta",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 300,
+        "max": 350,
+        "unit": "g"
+      }
+    }
+  ],
+  "250g pasta": [
+    {
+      "name": "Pasta",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 250,
+        "max": 250,
+        "unit": "g"
+      }
+    }
+  ],
+  "4 salmon fillets": [
+    {
+      "name": "Salmon fillets",
+      "category": "Fish & seafood",
+      "quantity": {
+        "min": 4,
+        "max": 4,
+        "unit": ""
+      }
+    }
+  ],
+  "1½ punnets tomatoes": [
+    {
+      "name": "Tomatoes",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1.5,
+        "max": 1.5,
+        "unit": "punnets"
+      }
+    }
+  ],
+  "250g cherry tomatoes, halved": [
+    {
+      "name": "Cherry tomatoes",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 250,
+        "max": 250,
+        "unit": "g"
+      }
+    }
+  ],
+  "5 cherry tomatoes": [
+    {
+      "name": "Cherry tomatoes",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 5,
+        "max": 5,
+        "unit": ""
+      }
+    }
+  ],
+  "2 tins tomatoes": [
+    {
+      "name": "Tinned tomatoes",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tins"
+      }
+    }
+  ],
+  "1 red onion": [
+    {
+      "name": "Red onion",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": ""
+      }
+    }
+  ],
+  "½ small red onion": [
+    {
+      "name": "Red onion",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 0.5,
+        "max": 0.5,
+        "unit": "small"
+      }
+    }
+  ],
+  "1 small red onion, diced": [
+    {
+      "name": "Red onion",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "small"
+      }
+    }
+  ],
+  "20g red onion": [
+    {
+      "name": "Red onion",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 20,
+        "max": 20,
+        "unit": "g"
+      }
+    }
+  ],
+  "Onion": [
+    {
+      "name": "Onion",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "1 round garlic & herb Boursin": [
+    {
+      "name": "Garlic & herb Boursin",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "round"
+      }
+    }
+  ],
+  "1–2 handfuls olives": [
+    {
+      "name": "Olives",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 2,
+        "unit": "handfuls"
+      }
+    }
+  ],
+  "2 handfuls spinach": [
+    {
+      "name": "Spinach",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "handfuls"
+      }
+    }
+  ],
+  "Large handful spinach, finely chopped": [
+    {
+      "name": "Spinach",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Spinach": [
+    {
+      "name": "Spinach",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "2 garlic cloves": [
+    {
+      "name": "Garlic",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "cloves"
+      }
+    }
+  ],
+  "1 garlic clove, crushed": [
+    {
+      "name": "Garlic",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "cloves"
+      }
+    }
+  ],
+  "Garlic": [
+    {
+      "name": "Garlic",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Olive oil": [
+    {
+      "name": "Olive oil",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "1 tsp olive oil": [
+    {
+      "name": "Olive oil",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "2 tsp olive oil": [
+    {
+      "name": "Olive oil",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "2 tbsp olive oil": [
+    {
+      "name": "Olive oil",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "2 tbsp olive oil, plus butter": [
+    {
+      "name": "Olive oil",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tbsp"
+      }
+    },
+    {
+      "name": "Butter",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "60g butter": [
+    {
+      "name": "Butter",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 60,
+        "max": 60,
+        "unit": "g"
+      }
+    }
+  ],
+  "Black pepper": [
+    {
+      "name": "Black pepper",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Salt and black pepper": [
+    {
+      "name": "Black pepper",
+      "category": "Cupboard",
+      "quantity": null
+    },
+    {
+      "name": "Salt",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Chilli flakes": [
+    {
+      "name": "Chilli flakes",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Juice of ½ lemon": [
+    {
+      "name": "Lemon juice",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 0.5,
+        "max": 0.5,
+        "unit": "lemon"
+      }
+    }
+  ],
+  "Juice of 1 lemon": [
+    {
+      "name": "Lemon juice",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "lemon"
+      }
+    }
+  ],
+  "Capers": [
+    {
+      "name": "Capers",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Basil": [
+    {
+      "name": "Basil",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Parsley": [
+    {
+      "name": "Parsley",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Small handful parsley": [
+    {
+      "name": "Parsley",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Parmesan": [
+    {
+      "name": "Parmesan",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "Butternut squash, diced": [
+    {
+      "name": "Butternut squash",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Aubergine, diced": [
+    {
+      "name": "Aubergine",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Halloumi, diced": [
+    {
+      "name": "Halloumi",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "Peppers, sliced": [
+    {
+      "name": "Peppers",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "200g bulgur wheat": [
+    {
+      "name": "Bulgur wheat",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 200,
+        "max": 200,
+        "unit": "g"
+      }
+    }
+  ],
+  "400ml vegetable stock": [
+    {
+      "name": "Vegetable stock",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 400,
+        "max": 400,
+        "unit": "ml"
+      }
+    }
+  ],
+  "Salmon in a soy and honey marinade": [
+    {
+      "name": "Salmon in a soy and honey marinade",
+      "category": "Fish & seafood",
+      "quantity": null
+    }
+  ],
+  "Fried eggs": [
+    {
+      "name": "Fried eggs",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "250g white fish, such as cod or haddock": [
+    {
+      "name": "White fish, such as cod or haddock",
+      "category": "Fish & seafood",
+      "quantity": {
+        "min": 250,
+        "max": 250,
+        "unit": "g"
+      }
+    }
+  ],
+  "1 tsp smoked paprika": [
+    {
+      "name": "Smoked paprika",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "½ tsp cumin": [
+    {
+      "name": "Cumin",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 0.5,
+        "max": 0.5,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "1 tsp garlic granules": [
+    {
+      "name": "Garlic granules",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "½ tsp garlic granules": [
+    {
+      "name": "Garlic granules",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 0.5,
+        "max": 0.5,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "½ tsp sugar": [
+    {
+      "name": "Sugar",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 0.5,
+        "max": 0.5,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "¼ tsp cayenne (optional)": [
+    {
+      "name": "Cayenne",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 0.25,
+        "max": 0.25,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "6 small corn tortillas": [
+    {
+      "name": "Small corn tortillas",
+      "category": "Bread & pastry",
+      "quantity": {
+        "min": 6,
+        "max": 6,
+        "unit": ""
+      }
+    }
+  ],
+  "150g mango": [
+    {
+      "name": "Mango",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 150,
+        "max": 150,
+        "unit": "g"
+      }
+    }
+  ],
+  "100g avocado": [
+    {
+      "name": "Avocado",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 100,
+        "max": 100,
+        "unit": "g"
+      }
+    }
+  ],
+  "1 medium avocado": [
+    {
+      "name": "Avocado",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "medium"
+      }
+    }
+  ],
+  "¼ avocado": [
+    {
+      "name": "Avocado",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 0.25,
+        "max": 0.25,
+        "unit": ""
+      }
+    }
+  ],
+  "½ red chilli (optional)": [
+    {
+      "name": "Red chilli",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 0.5,
+        "max": 0.5,
+        "unit": ""
+      }
+    }
+  ],
+  "2 red chillies, sliced (optional)": [
+    {
+      "name": "Red chilli",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": ""
+      }
+    }
+  ],
+  "Zest and juice of 1 lime": [
+    {
+      "name": "Lime zest and juice",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "lime"
+      }
+    }
+  ],
+  "1 tsp honey": [
+    {
+      "name": "Honey",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "2 tbsp honey": [
+    {
+      "name": "Honey",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "1 heaped tsp honey": [
+    {
+      "name": "Honey",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "heaped tsp"
+      }
+    }
+  ],
+  "Large handful coriander": [
+    {
+      "name": "Coriander",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Large handful coriander, roughly chopped": [
+    {
+      "name": "Coriander",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Coriander": [
+    {
+      "name": "Coriander",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "1 tbsp coriander": [
+    {
+      "name": "Coriander",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "Greek yoghurt": [
+    {
+      "name": "Greek yoghurt",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "Lime wedges (optional)": [
+    {
+      "name": "Lime wedges",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Feta (optional)": [
+    {
+      "name": "Feta",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "40g feta, crumbled": [
+    {
+      "name": "Feta",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 40,
+        "max": 40,
+        "unit": "g"
+      }
+    }
+  ],
+  "60g flour": [
+    {
+      "name": "Flour",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 60,
+        "max": 60,
+        "unit": "g"
+      }
+    }
+  ],
+  "750ml whole milk": [
+    {
+      "name": "Whole milk",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 750,
+        "max": 750,
+        "unit": "ml"
+      }
+    }
+  ],
+  "3 tbsp crème fraîche": [
+    {
+      "name": "Crème fraîche",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 3,
+        "max": 3,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "2 tsp Dijon mustard": [
+    {
+      "name": "Dijon mustard",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "150g cheddar": [
+    {
+      "name": "Cheddar",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 150,
+        "max": 150,
+        "unit": "g"
+      }
+    }
+  ],
+  "4 banana shallots or 2 onions": [
+    {
+      "name": "Banana shallots or onions",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "2 large leeks": [
+    {
+      "name": "Leeks",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "large"
+      }
+    }
+  ],
+  "500g mushrooms": [
+    {
+      "name": "Mushrooms",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 500,
+        "max": 500,
+        "unit": "g"
+      }
+    }
+  ],
+  "Rosemary and thyme": [
+    {
+      "name": "Rosemary",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    },
+    {
+      "name": "Thyme",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Rosemary": [
+    {
+      "name": "Rosemary",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "500g puff pastry (top only)": [
+    {
+      "name": "Puff pastry",
+      "category": "Bread & pastry",
+      "quantity": {
+        "min": 500,
+        "max": 500,
+        "unit": "g"
+      }
+    }
+  ],
+  "Milk or beaten egg, for brushing": [
+    {
+      "name": "Milk or beaten egg, for brushing",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "Chives, to serve (optional)": [
+    {
+      "name": "Chives",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "250–300g cooked prawns": [
+    {
+      "name": "Cooked prawns",
+      "category": "Fish & seafood",
+      "quantity": {
+        "min": 250,
+        "max": 300,
+        "unit": "g"
+      }
+    }
+  ],
+  "½ cucumber, chopped": [
+    {
+      "name": "Cucumber",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 0.5,
+        "max": 0.5,
+        "unit": ""
+      }
+    }
+  ],
+  "¼ cucumber": [
+    {
+      "name": "Cucumber",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 0.25,
+        "max": 0.25,
+        "unit": ""
+      }
+    }
+  ],
+  "40g cucumber": [
+    {
+      "name": "Cucumber",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 40,
+        "max": 40,
+        "unit": "g"
+      }
+    }
+  ],
+  "2 tbsp peanut butter": [
+    {
+      "name": "Peanut butter",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "60ml light soy sauce": [
+    {
+      "name": "Light soy sauce",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 60,
+        "max": 60,
+        "unit": "ml"
+      }
+    }
+  ],
+  "2 tbsp light soy sauce": [
+    {
+      "name": "Light soy sauce",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "2 tbsp white wine vinegar": [
+    {
+      "name": "White wine vinegar",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "1 tbsp sesame seeds": [
+    {
+      "name": "Sesame seeds",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "1 tbsp grated ginger": [
+    {
+      "name": "Ginger",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "400g light coconut milk": [
+    {
+      "name": "Light coconut milk",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 400,
+        "max": 400,
+        "unit": "g"
+      }
+    }
+  ],
+  "2 spring onions": [
+    {
+      "name": "Spring onions",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": ""
+      }
+    }
+  ],
+  "2 spring onions, finely sliced": [
+    {
+      "name": "Spring onions",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": ""
+      }
+    }
+  ],
+  "1 spring onion": [
+    {
+      "name": "Spring onions",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": ""
+      }
+    }
+  ],
+  "2 heaped tsp garlic & ginger paste": [
+    {
+      "name": "Garlic & ginger paste",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "heaped tsp"
+      }
+    }
+  ],
+  "2 tsp tomato purée": [
+    {
+      "name": "Tomato purée",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "2 tsp mild curry powder": [
+    {
+      "name": "Mild curry powder",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "2 tbsp mango chutney": [
+    {
+      "name": "Mango chutney",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "400ml water": [
+    {
+      "name": "Water",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 400,
+        "max": 400,
+        "unit": "ml"
+      }
+    }
+  ],
+  "1–2 tbsp water": [
+    {
+      "name": "Water",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 2,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "2 small carrots": [
+    {
+      "name": "Carrots",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "small"
+      }
+    }
+  ],
+  "160g Tenderstem broccoli": [
+    {
+      "name": "Tenderstem broccoli",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 160,
+        "max": 160,
+        "unit": "g"
+      }
+    }
+  ],
+  "300g raw king prawns": [
+    {
+      "name": "Raw king prawns",
+      "category": "Fish & seafood",
+      "quantity": {
+        "min": 300,
+        "max": 300,
+        "unit": "g"
+      }
+    }
+  ],
+  "2 × 150g straight-to-wok udon noodles": [
+    {
+      "name": "Straight-to-wok udon noodles",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "× 150g"
+      }
+    }
+  ],
+  "1 red pepper, diced": [
+    {
+      "name": "Red pepper",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": ""
+      }
+    }
+  ],
+  "1 yellow pepper, diced": [
+    {
+      "name": "Yellow pepper",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": ""
+      }
+    }
+  ],
+  "30g dried apricots, roughly chopped": [
+    {
+      "name": "Dried apricots",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 30,
+        "max": 30,
+        "unit": "g"
+      }
+    }
+  ],
+  "1 tbsp Middle Eastern or Moroccan spice blend": [
+    {
+      "name": "Middle Eastern or Moroccan spice blend",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "250g pouch cooked brown rice": [
+    {
+      "name": "Cooked brown rice",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 250,
+        "max": 250,
+        "unit": "g"
+      }
+    }
+  ],
+  "2 sea bass fillets, skin on": [
+    {
+      "name": "Sea bass fillets, skin on",
+      "category": "Fish & seafood",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": ""
+      }
+    }
+  ],
+  "1 tbsp tahini": [
+    {
+      "name": "Tahini",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "100g 0% Greek yoghurt": [
+    {
+      "name": "0% Greek yoghurt",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 100,
+        "max": 100,
+        "unit": "g"
+      }
+    }
+  ],
+  "1 tsp honey or maple syrup": [
+    {
+      "name": "Honey or maple syrup",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "1 tbsp pomegranate seeds": [
+    {
+      "name": "Pomegranate seeds",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "350g watermelon": [
+    {
+      "name": "Watermelon",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 350,
+        "max": 350,
+        "unit": "g"
+      }
+    }
+  ],
+  "200g cooked prawns, or protein of choice": [
+    {
+      "name": "Cooked prawns, or protein of choice",
+      "category": "Fish & seafood",
+      "quantity": {
+        "min": 200,
+        "max": 200,
+        "unit": "g"
+      }
+    }
+  ],
+  "1 tbsp roasted salted peanuts": [
+    {
+      "name": "Roasted salted peanuts",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "1 tbsp fish sauce": [
+    {
+      "name": "Fish sauce",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "1 tsp sesame oil": [
+    {
+      "name": "Sesame oil",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "½ tsp chilli paste": [
+    {
+      "name": "Chilli paste",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 0.5,
+        "max": 0.5,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "1 heaped tsp mint": [
+    {
+      "name": "Mint",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "heaped tsp"
+      }
+    }
+  ],
+  "160g can tuna in spring water or brine, drained": [
+    {
+      "name": "Tuna in spring water or brine, drained",
+      "category": "Fish & seafood",
+      "quantity": {
+        "min": 160,
+        "max": 160,
+        "unit": "g"
+      }
+    }
+  ],
+  "2 heaped tbsp Greek or 0% yoghurt": [
+    {
+      "name": "Greek or 0% yoghurt",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "heaped tbsp"
+      }
+    }
+  ],
+  "1 tsp harissa paste": [
+    {
+      "name": "Harissa paste",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "1 wholemeal pitta": [
+    {
+      "name": "Wholemeal pitta",
+      "category": "Bread & pastry",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": ""
+      }
+    }
+  ],
+  "6 medium eggs": [
+    {
+      "name": "Eggs",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 6,
+        "max": 6,
+        "unit": "medium"
+      }
+    }
+  ],
+  "2 medium eggs": [
+    {
+      "name": "Eggs",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "medium"
+      }
+    }
+  ],
+  "1 tsp olive oil or butter": [
+    {
+      "name": "Olive oil or butter",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "1 small green pepper, finely diced": [
+    {
+      "name": "Green pepper",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "small"
+      }
+    }
+  ],
+  "1 tbsp chopped pickled jalapeños": [
+    {
+      "name": "Pickled jalapeños",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "80g mature cheddar, grated": [
+    {
+      "name": "Mature cheddar",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 80,
+        "max": 80,
+        "unit": "g"
+      }
+    }
+  ],
+  "1–2 tsp hot sauce": [
+    {
+      "name": "Hot sauce",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 2,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "4 wholegrain wraps": [
+    {
+      "name": "Wholegrain wraps",
+      "category": "Bread & pastry",
+      "quantity": {
+        "min": 4,
+        "max": 4,
+        "unit": ""
+      }
+    }
+  ],
+  "1 heaped tbsp cottage cheese": [
+    {
+      "name": "Cottage cheese",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "heaped tbsp"
+      }
+    }
+  ],
+  "Small handful parsley or chives": [
+    {
+      "name": "Parsley or chives",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "1 tsp crispy chilli oil, or more": [
+    {
+      "name": "Crispy chilli oil",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "1 × 45g slice sourdough": [
+    {
+      "name": "Sourdough",
+      "category": "Bread & pastry",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "× 45g slice"
+      }
+    }
+  ],
+  "Red or white wine (optional)": [
+    {
+      "name": "Red or white wine",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Worcester sauce": [
+    {
+      "name": "Worcester sauce",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Soy sauce": [
+    {
+      "name": "Soy sauce",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Tomato sauce": [
+    {
+      "name": "Tomato sauce",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Reggae Reggae sauce": [
+    {
+      "name": "Reggae Reggae sauce",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Lasagne sheets": [
+    {
+      "name": "Lasagne sheets",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Ready-made cheese sauce": [
+    {
+      "name": "Ready-made cheese sauce",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ]
+}

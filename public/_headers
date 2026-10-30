@@ -8,3 +8,8 @@
   Cache-Control: public, max-age=0, must-revalidate
 /app.js
   Cache-Control: public, max-age=0, must-revalidate
+/planner.js
+  Cache-Control: public, max-age=0, must-revalidate
+/shopping-list.js
+  Cache-Control: public, max-age=0, must-revalidate
+

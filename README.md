@@ -2,6 +2,10 @@
 
 A minimalist, mobile-friendly recipe collection at **https://recipes.njmurray.com/**. A photo-led hub links to individual recipe pages. Search by recipe or ingredient, filter by category or quick meals, tick off ingredients and print a cooking-friendly page.
 
+The **[meal planner](https://recipes.njmurray.com/meal-planner/)** lets visitors choose recipes, assign optional weekdays, cook one or more batches and make a single shopping list. Add meals from the planner or use “Plan this meal” on a recipe page. The same recipe can be planned more than once. Plans and shopping ticks stay in the current browser; there is no account or cross-device sync. Copy and print work without any server API.
+
+Shopping totals combine only explicitly recorded amounts with matching units and size qualifiers. Ranges remain ranges; alternatives, heaped measures, different preparations and unmeasured amounts are preserved. Optional ingredients are excluded until “Include optional extras” is selected. Every shopping item exposes its exact original ingredient lines and recipe links. A batch multiplies the original recipe rather than inferring a serving count. Changed quantities clear the affected shopping ticks. `content/shopping.json` maps original ingredient lines to shopping names and explicit quantities; update that mapping alongside any new ingredient, without changing the source recipe to fit the planner.
+
 ## Content
 
 `content/recipes.json` contains the recipes from the original Food-project recipe chats plus later additions explicitly requested by the owner. `sourceChat` records the title. The excluded chats are **Plan Three Meals**, **Core meals list**, and **Food Ideas Notebook**.
@@ -25,12 +29,17 @@ npm run check
 
 - `content/recipes.json` — titles, original quantities, instructions and source-chat names
 - `content/photos.json` — illustrative photography and credits
+- `content/shopping.json` — shopping groups and explicitly recorded quantities, keyed by original ingredient wording
 - `scripts/build.mjs` — static HTML generator and Recipe structured data
 - `scripts/check.mjs` — content coverage, output, links and structured-data checks
 - `public/` — stylesheet, small progressive-enhancement script, favicon and response headers
+- `public/planner.js`, `public/shopping-list.js` — browser meal planning and pure shopping-list calculation
+- `test/shopping-list.test.mjs` — original ingredient coverage, aggregation, alternatives, optional extras, repeat cooking and saved-state checks
 - `dist/` — generated hub, individual recipe pages, credits, sitemap and 404 (not committed)
 
 All content and links work without JavaScript. Search/filter controls and ingredient checkboxes are enhanced in the browser. Ingredient ticks are stored per recipe on the current browser; storage failure does not prevent cooking. There is no account, database or server API.
+
+The interactive meal planner needs JavaScript; the original recipe pages remain readable without it. If browser storage is unavailable, planning still works for the open page and shows that the plan cannot be saved. Clipboard failures show a selectable text fallback.
 
 See `DEPLOYMENT.md` for the GitHub and Cloudflare deployment mapping. The homepage card and public catalog live separately in `NicJMurray/homepage`.
 
@@ -41,3 +50,4 @@ Mrs Murray's Lasagne uses the 30 October 2026 transcript and accompanying ingred
 The stylesheet URL includes a build-time content hash so published spacing changes are picked up on refresh.
 
 Mrs Murray's Lasagne uses a locally hosted AI-generated vegetarian lasagne illustration, labelled as illustrative. Stock-photo credits remain on the other recipes.
+

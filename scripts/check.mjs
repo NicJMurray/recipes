@@ -12,7 +12,7 @@ assert.deepEqual(recipes.map(r=>r.sourceChat).sort(),expected.sort(),'Every appr
 assert.equal(new Set(recipes.map(r=>r.slug)).size,recipes.length,'Recipe addresses must be unique.');
 const hub=await readFile(path.join(out,'index.html'),'utf8');
 assert.equal((hub.match(/data-recipe data-category=/g)||[]).length,recipes.length);
-const pages=['index.html','photography-credits/index.html','404.html',...recipes.map(r=>`recipes/${r.slug}/index.html`)];
+const pages=['index.html','meal-planner/index.html','photography-credits/index.html','404.html',...recipes.map(r=>`recipes/${r.slug}/index.html`)];
 for(const recipe of recipes){
  assert.match(recipe.slug,/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
  assert.ok(recipe.ingredients.length&&recipe.ingredients.every(g=>g.items.length));
@@ -39,7 +39,7 @@ for(const page of pages){
  }
  assert.ok(html.includes('name="viewport"'));
 }
-for(const file of ['style.css','app.js','favicon.svg','robots.txt','sitemap.xml','_headers'])await access(path.join(out,file));
+for(const file of ['style.css','app.js','planner.js','shopping-list.js','favicon.svg','robots.txt','sitemap.xml','_headers'])await access(path.join(out,file));
 // Catch accidental recipe normalization in the two recipes with explicitly discussed quantities.
 const pie=recipes.find(r=>r.slug==='creamy-mushroom-pie');
 assert.ok(pie.ingredients.flatMap(g=>g.items).includes('750ml whole milk'));
@@ -54,4 +54,15 @@ const lasagne=recipes.find(r=>r.slug==='mrs-murrays-lasagne');
 assert.equal(lasagne.title,"Mrs Murray's Lasagne");
 assert.ok(!/courgette/i.test(JSON.stringify(lasagne)));
 assert.ok(!hub.includes('<footer'),'Keep the footer text removed.');
+const planner=await readFile(path.join(out,'meal-planner/index.html'),'utf8');
+assert.ok(planner.includes('https://recipes.njmurray.com/meal-planner/'));
+const plannerData=JSON.parse(planner.match(/<script type="application\/json" id="planner-data">([\s\S]*?)<\/script>/)[1]);
+assert.equal(plannerData.recipes.length,recipes.length);
+assert.ok(!JSON.stringify(plannerData).includes('sourceChat'),'Do not publish source chat metadata.');
+assert.ok((await readFile(path.join(out,'sitemap.xml'),'utf8')).includes('/meal-planner/'));
+for(const recipe of recipes){
+ const html=await readFile(path.join(out,'recipes',recipe.slug,'index.html'),'utf8');
+ assert.ok(html.includes(`/meal-planner/?add=${recipe.slug}`));
+}
+
 

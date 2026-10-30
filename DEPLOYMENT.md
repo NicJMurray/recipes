@@ -19,4 +19,7 @@ Add the custom domain to the Pages project and create a proxied CNAME to the **s
 
 Only generated `dist/` is public. Source chat titles are kept in the data for provenance, while no chat links, messages or personal profile information are published. Photography is served directly by the Unsplash CDN at responsive sizes, with photographer credits linked from each recipe page. If the external CDN is unavailable, recipe content and navigation remain usable.
 
+`/meal-planner/` is part of the same static build and sitemap. Its public data contains recipe ingredients and shopping mappings, without source-chat titles. No new backend, environment binding, subscription or external API is required. Personal plans live only in browser localStorage. The planner scripts revalidate on refresh; the page includes a versioned entry script.
+
 The `Food` section, `Recipes` card and matching public catalog entry belong in `NicJMurray/homepage`. Do not copy this application into that repository.
+
