@@ -663,5 +663,78 @@
       "The original recipe gives 6 minutes of cooking time in its heading and 6–7 minutes for boiling the eggs in the method. Both are preserved.",
       "The original recipe notes up to 3 days in the fridge."
     ]
+  },
+  {
+    "slug": "mrs-murrays-lasagne",
+    "title": "Mrs Murray's Lasagne",
+    "sourceChat": "Lasagne Recipe Transcript",
+    "description": "Roasted butternut squash and aubergine, tomato and spinach sauce, lasagne sheets and ready-made cheese sauce.",
+    "category": "Vegetarian",
+    "tags": [
+      "Oven",
+      "Pasta"
+    ],
+    "imageKey": "squash",
+    "cook": "About 40 min bake",
+    "timeLabel": "About 40 min bake",
+    "temperature": "180°C / 160°C fan",
+    "ingredients": [
+      {
+        "title": "Roasted vegetables",
+        "items": [
+          "Butternut squash, diced",
+          "Aubergine, diced",
+          "Olive oil",
+          "Salt and black pepper",
+          "Rosemary"
+        ]
+      },
+      {
+        "title": "Tomato sauce",
+        "items": [
+          "Onion",
+          "Garlic",
+          "Red or white wine (optional)",
+          "2 tins tomatoes",
+          "Spinach",
+          "Worcester sauce",
+          "Soy sauce",
+          "Tomato sauce",
+          "Reggae Reggae sauce",
+          "Chilli flakes",
+          "Rosemary",
+          "Salt and black pepper"
+        ]
+      },
+      {
+        "title": "For layering",
+        "items": [
+          "Lasagne sheets",
+          "Ready-made cheese sauce"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Roast the vegetables",
+        "text": "Toss the diced butternut squash and aubergine with olive oil, salt, black pepper and rosemary. Roast at 200°C for about 30 minutes."
+      },
+      {
+        "title": "Start the tomato sauce",
+        "text": "Fry the onion and garlic. If using wine, add it while the onions cook. Add the two tins of tomatoes."
+      },
+      {
+        "title": "Season and add the spinach",
+        "text": "Add the Worcester sauce, soy sauce, tomato sauce, Reggae Reggae sauce, chilli flakes, rosemary, salt and black pepper. Add the spinach last, then combine the tomato sauce with the roasted vegetables."
+      },
+      {
+        "title": "Layer the lasagne",
+        "text": "Layer the vegetable and tomato mixture, lasagne sheets and ready-made cheese sauce in a baking dish."
+      },
+      {
+        "title": "Bake",
+        "text": "Bake at 180°C conventional or 160°C fan for about 40 minutes."
+      }
+    ]
   }
 ]

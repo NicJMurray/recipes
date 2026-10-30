@@ -1,10 +1,10 @@
 # Nic’s recipe book
 
-A minimalist, mobile-friendly recipe collection at **https://recipes.njmurray.com/**. A photo-led hub links to eleven individual recipe pages. Search by recipe or ingredient, filter by category or quick meals, tick off ingredients and print a cooking-friendly page.
+A minimalist, mobile-friendly recipe collection at **https://recipes.njmurray.com/**. A photo-led hub links to individual recipe pages. Search by recipe or ingredient, filter by category or quick meals, tick off ingredients and print a cooking-friendly page.
 
 ## Content
 
-`content/recipes.json` contains the recipes from the eleven Food-project chats shown in the supplied folder screenshot. `sourceChat` records the title. The excluded chats are **Plan Three Meals**, **Core meals list**, and **Food Ideas Notebook**.
+`content/recipes.json` contains the recipes from the original Food-project recipe chats plus later additions explicitly requested by the owner. `sourceChat` records the title. The excluded chats are **Plan Three Meals**, **Core meals list**, and **Food Ideas Notebook**.
 
 Preserve the latest settled version within each original chat. Keep informal amounts, ranges, alternatives and unspecified measurements as written. Do not generate missing quantities, timings, temperatures, servings, nutritional values or substitutions. The whole-milk mushroom pie keeps its original amounts; unadopted audit suggestions are not recipe changes. Cooking headings and descriptions organize the recovered content without adding cooking instructions. Chat text was recovered through history search rather than a complete chat export.
 
@@ -33,3 +33,6 @@ npm run check
 All content and links work without JavaScript. Search/filter controls and ingredient checkboxes are enhanced in the browser. Ingredient ticks are stored per recipe on the current browser; storage failure does not prevent cooking. There is no account, database or server API.
 
 See `DEPLOYMENT.md` for the GitHub and Cloudflare deployment mapping. The homepage card and public catalog live separately in `NicJMurray/homepage`.
+
+
+Mrs Murray's Lasagne uses the 30 October 2026 transcript and accompanying ingredient screenshot, with courgette omitted as requested. The text-free page ending keeps 48px bottom space; removed introduction and footer copy should stay removed.

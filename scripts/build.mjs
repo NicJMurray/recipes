@@ -43,6 +43,7 @@ ${body}
 </body></html>`;
 }
 
+const hub = layout({title:'Recipes',description:'My recipe collection.',body:`
 <main id="main" class="wrap">
   <section class="collection" aria-label="Recipe collection"><div class="collection-tools"><div class="filters" role="group" aria-label="Filter recipes"><button type="button" class="filter active" data-filter="all" aria-pressed="true">All recipes</button><button type="button" class="filter" data-filter="Fish & seafood" aria-pressed="false">Fish & seafood</button><button type="button" class="filter" data-filter="Vegetarian" aria-pressed="false">Vegetarian</button><button type="button" class="filter" data-filter="quick" aria-pressed="false">20 minutes & under</button></div><label class="search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6" stroke="currentColor" stroke-width="1.5"/><path d="m15 15 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="sr-only">Search recipes or ingredients</span><input type="search" id="recipe-search" aria-label="Search recipes or ingredients" placeholder="Find a recipe or ingredient…" autocomplete="off"><button type="button" id="clear-search" aria-label="Clear search" hidden>×</button></label></div>
   <div class="collection-label"><span id="result-count" role="status" aria-live="polite">${recipes.length} recipes</span><span>A RECIPE FOR EVERY KIND OF DAY</span></div>
@@ -75,3 +76,4 @@ await mkdir(path.join(out,'photography-credits'),{recursive:true});await writeFi
 await writeFile(path.join(out,'404.html'),layout({title:'Recipe not found',description:'Find your way back to the recipe collection.',body:`<main id="main" class="wrap not-found"><p class="eyebrow">404</p><h1>Lost in the kitchen?</h1><p>That recipe isn’t here.</p><a href="/">Back to all recipes ${arrow}</a></main>`}));
 await writeFile(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/',...recipes.map(url),'/photography-credits/'].map(p=>`<url><loc>https://recipes.njmurray.com${p}</loc></url>`).join('')}</urlset>`);
 console.log(`Built hub, ${recipes.length} recipe pages, photography credits and 404 page.`);
+

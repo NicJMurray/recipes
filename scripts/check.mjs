@@ -7,11 +7,11 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'dist');
 const recipes=JSON.parse(await readFile(path.join(root,'content/recipes.json'),'utf8'));
 const photos=JSON.parse(await readFile(path.join(root,'content/photos.json'),'utf8'));
-const expected=['Peanut-soy dressing prawn pasta salad','Blackened Fish Tacos','Apricot Pepper Rice Recipe','Curried Coconut Prawn Udon','Thai-style Salad Recipe','Harissa Tuna Pitta Recipe','Cheddar Jalapeño Egg Burritos','Crispy Chilli Egg Recipe','Mediterranean Squash Recipe','Boursin Salmon Traybake Recipe','Creamy Mushroom Pie Recipe'];
-assert.deepEqual(recipes.map(r=>r.sourceChat).sort(),expected.sort(),'The 11 screenshot-confirmed chats must each appear exactly once.');
+const expected=['Peanut-soy dressing prawn pasta salad','Blackened Fish Tacos','Apricot Pepper Rice Recipe','Curried Coconut Prawn Udon','Thai-style Salad Recipe','Harissa Tuna Pitta Recipe','Cheddar Jalapeño Egg Burritos','Crispy Chilli Egg Recipe','Mediterranean Squash Recipe','Boursin Salmon Traybake Recipe','Creamy Mushroom Pie Recipe','Lasagne Recipe Transcript'];
+assert.deepEqual(recipes.map(r=>r.sourceChat).sort(),expected.sort(),'Every approved source chat must appear exactly once.');
 assert.equal(new Set(recipes.map(r=>r.slug)).size,recipes.length,'Recipe addresses must be unique.');
 const hub=await readFile(path.join(out,'index.html'),'utf8');
-assert.equal((hub.match(/data-recipe data-category=/g)||[]).length,11);
+assert.equal((hub.match(/data-recipe data-category=/g)||[]).length,recipes.length);
 const pages=['index.html','photography-credits/index.html','404.html',...recipes.map(r=>`recipes/${r.slug}/index.html`)];
 for(const recipe of recipes){
  assert.match(recipe.slug,/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
@@ -47,3 +47,9 @@ const squash=recipes.find(r=>r.slug==='mediterranean-squash-halloumi');
 assert.equal(squash.servings,undefined,'Do not invent a serving count for the original squash recipe.');
 assert.ok(squash.ingredients.flatMap(g=>g.items).includes('Aubergine, diced'));
 console.log(`Checked all ${recipes.length} source chats, ${pages.length} HTML pages, ingredient counts, structured data and local links.`);
+
+
+const lasagne=recipes.find(r=>r.slug==='mrs-murrays-lasagne');
+assert.equal(lasagne.title,"Mrs Murray's Lasagne");
+assert.ok(!/courgette/i.test(JSON.stringify(lasagne)));
+assert.ok(!hub.includes('<footer'),'Keep the footer text removed.');
