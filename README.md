@@ -4,9 +4,9 @@ A minimalist, mobile-friendly recipe collection at **https://recipes.njmurray.co
 
 Every recipe has a primary `mealType`: Breakfast, Lunch or Dinner. The collection toolbar filters by those labels alongside the existing dietary and quick-meal filters, with ingredient search working within the selected filter. The same label appears on recipe cards, recipe pages, related recipes and the meal planner. Meal types organise browsing and do not restrict which day a recipe can be planned.
 
-The **[meal planner](https://recipes.njmurray.com/meal-planner/)** lets visitors choose recipes, assign optional weekdays, cook one or more batches and make a single shopping list. Add meals from the planner or use “Plan this meal” on a recipe page. The same recipe can be planned more than once. Plans and shopping ticks stay in the current browser; there is no account or cross-device sync. Copy and print work without any server API.
+The **[meal planner](https://recipes.njmurray.com/meal-planner/)** lets visitors choose recipes, assign optional weekdays, cook one or more batches and make a single shopping list. Add meals from the planner or use “Plan this meal” on a recipe page. The same recipe can be planned more than once. Plans and shopping ticks stay in the current browser; plans are separate from the shared editor account and have no cross-device sync. Copy and print work in the browser.
 
-Shopping totals combine only explicitly recorded amounts with matching units and size qualifiers. Ranges remain ranges; alternatives, heaped measures, different preparations and unmeasured amounts are preserved. Optional ingredients are excluded until “Include optional extras” is selected. Every shopping item exposes its exact original ingredient lines and recipe links. A batch multiplies the original recipe rather than inferring a serving count. Changed quantities clear the affected shopping ticks. `content/shopping.json` maps original ingredient lines to shopping names and explicit quantities; update that mapping alongside any new ingredient, without changing the source recipe to fit the planner.
+Shopping totals combine only explicitly recorded amounts with matching units and size qualifiers. Ranges remain ranges; alternatives, heaped measures, different preparations and unmeasured amounts are preserved. Optional ingredients are excluded until “Include optional extras” is selected. Every shopping item exposes its exact original ingredient lines and recipe links. A batch multiplies the original recipe rather than inferring a serving count. Changed quantities clear the affected shopping ticks. `content/shopping.json` maps original ingredient lines to shopping names and explicit quantities; original mappings remain authoritative. Newly edited, plain amounts can combine with an exactly matching shopping item and unit; ambiguous wording stays explicit.
 
 ## Content
 
@@ -27,21 +27,24 @@ npm run build
 npm run check
 ```
 
-`scripts/build.mjs` generates only public files in `dist/`. Serve that folder for local development. On the managed preview service, `.openai/hosting.json` selects `dist`; that local preview setting is not committed.
+`scripts/build.mjs` generates only public files in `dist/`. For the complete local editor, run `npm run dev`. The disposable local-only `/preview-editor` route establishes a fixture session for UI tests. It is not bundled or deployed. The Node harness requires Node 22.13 or newer for SQLite. On the managed preview service, `.openai/hosting.json` selects `dist`; that local preview setting is not committed.
 
 ## Structure
 
 - `content/recipes.json` — titles, original quantities, instructions and source-chat names
 - `content/photos.json` — illustrative photography and credits
 - `content/shopping.json` — shopping groups and explicitly recorded quantities, keyed by original ingredient wording
-- `scripts/build.mjs` — static HTML generator and Recipe structured data
+- `server/render.js` — shared HTML renderer and Recipe structured data
+- `server/worker.js`, `server/schema.sql` — authenticated editing API, server-rendered pages, sessions and D1 schema
+- `scripts/build.mjs` — static fallback generation and dependency-free Pages Worker bundling
 - `scripts/check.mjs` — content coverage, output, links and structured-data checks
 - `public/` — stylesheet, small progressive-enhancement script, favicon and response headers
 - `public/planner.js`, `public/shopping-list.js` — browser meal planning and pure shopping-list calculation
-- `test/shopping-list.test.mjs` — original ingredient coverage, aggregation, alternatives, optional extras, repeat cooking and saved-state checks
+- `test/` — ingredient coverage, shopping calculations, authentication, publishing, validation, uploads and concurrency checks
+- `public/admin.js` — login, Published/Edit mode, ingredient and method editing, reordering and photo preparation
 - `dist/` — generated hub, individual recipe pages, credits, sitemap and 404 (not committed)
 
-All content and links work without JavaScript. Search/filter controls and ingredient checkboxes are enhanced in the browser. Ingredient ticks are stored per recipe on the current browser; storage failure does not prevent cooking. There is no account, database or server API.
+All content and links work without JavaScript. Search/filter controls and ingredient checkboxes are enhanced in the browser. Ingredient ticks are stored per recipe on the current browser; storage failure does not prevent cooking. The shared editor uses Pages Functions and Cloudflare D1; public recipes remain fully rendered without browser JavaScript.
 
 The interactive meal planner needs JavaScript; the original recipe pages remain readable without it. If browser storage is unavailable, planning still works for the open page and shows that the plan cannot be saved. Clipboard failures show a selectable text fallback.
 
@@ -55,3 +58,15 @@ The stylesheet URL includes a build-time content hash so published spacing chang
 
 Mrs Murray's Lasagne uses a locally hosted AI-generated vegetarian lasagne illustration, labelled as illustrative. Stock-photo credits remain on the other recipes.
 
+
+## Shared recipe editing
+
+Use the small Log in link, then switch between **Published** and **Edit mode**. Published keeps the public recipe layout. In Edit mode the hub has small Edit links; a recipe opens a full form for its title, description, meal/category labels, tags, timings, ingredient sections, method, notes and photo. Ingredient and method rows support pointer dragging and keyboard-friendly up/down controls. Add and remove rows with the small controls. Recipe URLs remain fixed.
+
+Edits stay in the open tab until **Save changes** publishes them. Switching away prompts to save, discard or keep editing. The editor warns before leaving a dirty page. Drafts do not survive a forced tab close. Simultaneous saves use a revision check: a stale draft cannot overwrite a newer save. Reauthentication retains the open draft.
+
+Saved overrides and uploaded photos live in D1 and survive future Git deployments. The JSON files remain the original seed recipes. Once a recipe has an override, editing its JSON seed will not replace that override; explicitly migrate the saved data when needed. Shared changes update the hub, individual recipe pages, related cards, structured data and the meal planner on refresh. Visitor meal plans remain on their own devices.
+
+Phone photos are decoded and resized to WebP in the browser, capped at 1 MB, then validated on the server. GPS/EXIF and XMP metadata are removed. Unsupported HEIC decoding prompts for a JPEG/PNG copy. Uploaded photo descriptions and optional credits are editable. Original photography can be restored. New uploads become publicly available only after a recipe references them.
+
+There is one shared account and no registration. A salted PBKDF2 hash is stored only as a Cloudflare secret. Random seven-day session tokens use HttpOnly, Secure, SameSite=Strict cookies; D1 stores only token hashes. Writes enforce the configured origin. Failed logins are limited per IP and across the account. Credentials must never appear in source, build output, screenshots or logs. The last 30 previous saved versions are retained in D1 for recovery; there is no restore UI.

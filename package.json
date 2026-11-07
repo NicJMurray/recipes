@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node scripts/check.mjs && node --test test/*.test.mjs"
+    "check": "node scripts/check.mjs && node --test test/*.test.mjs",
+    "dev": "node test/dev-server.mjs"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  }
 }
-

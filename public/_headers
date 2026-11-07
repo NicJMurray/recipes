@@ -3,7 +3,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' https://images.unsplash.com; style-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'
+  Content-Security-Policy: default-src 'self'; img-src 'self' blob: https://images.unsplash.com; style-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'
 /style.css
   Cache-Control: public, max-age=0, must-revalidate
 /app.js
@@ -13,3 +13,6 @@
 /shopping-list.js
   Cache-Control: public, max-age=0, must-revalidate
 
+
+/admin.js
+  Cache-Control: public, max-age=0, must-revalidate

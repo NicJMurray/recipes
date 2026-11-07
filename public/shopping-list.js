@@ -27,6 +27,22 @@ function amountLabel(amount) {
   return `${number}${['g','ml'].includes(amount.unit) ? '' : amount.unit ? ' ' : ''}${amount.unit}`;
 }
 
+// New editor wording is kept intact. Only plain, unambiguous measures are
+// combined, and names must match an existing shopping item exactly.
+export function inferShoppingEntry(original,mapping) {
+  const fallback=[{name:original,category:'Other',quantity:null}];
+  if(/\b(?:or|and|heaped|drained|cooked)\b|[,()]/i.test(original))return fallback;
+  const match=original.trim().match(/^(\d+(?:\.\d+)?)\s*(g|kg|ml|l|tsp|tbsp)\s+(.+)$/i)
+    ||original.trim().match(/^(\d+(?:\.\d+)?)(g|kg|ml|l)\s*(.+)$/i);
+  if(!match)return fallback;
+  let quantity=Number(match[1]),unit=match[2].toLowerCase();
+  if(!Number.isFinite(quantity)||quantity<=0||quantity>100000)return fallback;
+  if(unit==='kg'){quantity*=1000;unit='g';}if(unit==='l'){quantity*=1000;unit='ml';}
+  const name=match[3].trim().toLowerCase();
+  const known=Object.values(mapping).flat().find(entry=>entry.name.toLowerCase()===name&&entry.quantity?.unit===unit);
+  return known?[{name:known.name,category:known.category,quantity:{min:quantity,max:quantity,unit}}]:fallback;
+}
+
 export function buildShoppingList(recipes, mapping, meals, includeOptional = false) {
   const bySlug = new Map(recipes.map(recipe => [recipe.slug, recipe]));
   const batches = new Map();
@@ -40,7 +56,7 @@ export function buildShoppingList(recipes, mapping, meals, includeOptional = fal
         const optional = /^optional\b/i.test(group.title) || /\(optional\)/i.test(original);
         if (optional && !includeOptional) continue;
         // An unmeasured ingredient repeated in different stages is still one purchase.
-        const entries = mapping[original] || [{name: original, category: 'Other', quantity: null}];
+        const entries = mapping[original] || inferShoppingEntry(original,mapping);
         for (const entry of entries) {
           const key = `${entry.category}:${entry.name}`;
           const sourceKey = `${key}:${original}`;
