@@ -1474,5 +1474,118 @@
       "category": "Dairy & eggs",
       "quantity": null
     }
+  ],
+  "Eggs": [
+    {
+      "name": "Eggs",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "Butter": [
+    {
+      "name": "Butter",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "Smoked salmon": [
+    {
+      "name": "Smoked salmon",
+      "category": "Fish & seafood",
+      "quantity": null
+    }
+  ],
+  "½ avocado": [
+    {
+      "name": "Avocado",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 0.5,
+        "max": 0.5,
+        "unit": ""
+      }
+    }
+  ],
+  "Lemon": [
+    {
+      "name": "Lemon",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Halloumi": [
+    {
+      "name": "Halloumi",
+      "category": "Dairy & eggs",
+      "quantity": null
+    }
+  ],
+  "Mushrooms": [
+    {
+      "name": "Mushrooms",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "2 eggs": [
+    {
+      "name": "Eggs",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": ""
+      }
+    }
+  ],
+  "A little olive oil": [
+    {
+      "name": "Olive oil",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Smoked mackerel": [
+    {
+      "name": "Smoked mackerel",
+      "category": "Fish & seafood",
+      "quantity": null
+    }
+  ],
+  "Potatoes": [
+    {
+      "name": "Potatoes",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Green beans": [
+    {
+      "name": "Green beans",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Olives": [
+    {
+      "name": "Olives",
+      "category": "Cupboard",
+      "quantity": null
+    }
+  ],
+  "Lettuce": [
+    {
+      "name": "Lettuce",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "Mustard vinaigrette": [
+    {
+      "name": "Mustard vinaigrette",
+      "category": "Cupboard",
+      "quantity": null
+    }
   ]
 }

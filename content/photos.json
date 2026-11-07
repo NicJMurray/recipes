@@ -70,5 +70,29 @@
     "by": "AI-generated illustration",
     "generated": true,
     "alt": "Vegetarian lasagne with butternut squash, aubergine and spinach"
+  },
+  "smoked-salmon-eggs-avocado": {
+    "src": "/images/smoked-salmon-eggs-avocado.webp",
+    "alt": "Smoked salmon, scrambled eggs and avocado on a plate with lemon",
+    "by": "Supplied recipe image",
+    "supplied": true,
+    "width": 389,
+    "height": 304
+  },
+  "halloumi-breakfast-skillet": {
+    "src": "/images/halloumi-breakfast-skillet.webp",
+    "alt": "Halloumi, eggs, mushrooms and spinach in a breakfast skillet",
+    "by": "Supplied recipe image",
+    "supplied": true,
+    "width": 389,
+    "height": 301
+  },
+  "mackerel-nicoise-salad": {
+    "src": "/images/mackerel-nicoise-salad.webp",
+    "alt": "Smoked mackerel with boiled eggs, green beans, olives and lettuce",
+    "by": "Supplied recipe image",
+    "supplied": true,
+    "width": 389,
+    "height": 306
   }
 }

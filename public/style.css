@@ -22,6 +22,25 @@
 @media print { .page-end-space { display: none; } }
 
 /* Weekly plan and shopping list. */
+/* Meal labels are shared by the collection, recipe pages and planner. */
+.meal-label { display: inline-flex; align-items: center; border: 1px solid #d0d6c6; border-radius: 20px; padding: 3px 9px; font-family: var(--sans); font-size: 9px; font-weight: 500; line-height: 1.4; letter-spacing: .2px; color: var(--ink); white-space: nowrap; }
+.card-photo-wrap { position: relative; margin-bottom: 19px; }
+.card-photo-wrap .card-photo { margin-bottom: 0; }
+.card-meal-label { position: absolute; top: 12px; left: 12px; border: 0; background: var(--paper); padding: 5px 11px; pointer-events: none; }
+.recipe-labels { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.recipe-labels .eyebrow { margin: 0; }
+.pick-copy .meal-label, .planned-info .meal-label { font-size: 8px; padding: 2px 7px; margin-right: 6px; vertical-align: middle; }
+.filters .filter[data-filter="Dinner"] { margin-right: 8px; }
+@media (max-width: 700px) {
+  .card-photo-wrap { margin-bottom: 14px; }
+  .card-meal-label { top: 8px; left: 8px; font-size: 8px; padding: 4px 8px; }
+  .recipe-labels { gap: 9px; }
+  .recipe-labels .eyebrow { font-size: 8px; }
+  .filters .filter[data-filter="Dinner"] { margin-right: 0; }
+}
+@media print {
+  .recipe-labels .meal-label { font-size: 8pt; padding: 2pt 6pt; }
+}
 .site-header nav .nav-planner[aria-current="page"] { color: var(--olive); text-decoration: underline; text-underline-offset: 6px; }
 .recipe-actions > div { flex-wrap: wrap; row-gap: 10px; }
 .planner-page { padding-top: 46px; }

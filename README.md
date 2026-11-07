@@ -2,6 +2,8 @@
 
 A minimalist, mobile-friendly recipe collection at **https://recipes.njmurray.com/**. A photo-led hub links to individual recipe pages. Search by recipe or ingredient, filter by category or quick meals, tick off ingredients and print a cooking-friendly page.
 
+Every recipe has a primary `mealType`: Breakfast, Lunch or Dinner. The collection toolbar filters by those labels alongside the existing dietary and quick-meal filters, with ingredient search working within the selected filter. The same label appears on recipe cards, recipe pages, related recipes and the meal planner. Meal types organise browsing and do not restrict which day a recipe can be planned.
+
 The **[meal planner](https://recipes.njmurray.com/meal-planner/)** lets visitors choose recipes, assign optional weekdays, cook one or more batches and make a single shopping list. Add meals from the planner or use “Plan this meal” on a recipe page. The same recipe can be planned more than once. Plans and shopping ticks stay in the current browser; there is no account or cross-device sync. Copy and print work without any server API.
 
 Shopping totals combine only explicitly recorded amounts with matching units and size qualifiers. Ranges remain ranges; alternatives, heaped measures, different preparations and unmeasured amounts are preserved. Optional ingredients are excluded until “Include optional extras” is selected. Every shopping item exposes its exact original ingredient lines and recipe links. A batch multiplies the original recipe rather than inferring a serving count. Changed quantities clear the affected shopping ticks. `content/shopping.json` maps original ingredient lines to shopping names and explicit quantities; update that mapping alongside any new ingredient, without changing the source recipe to fit the planner.
@@ -12,7 +14,9 @@ Shopping totals combine only explicitly recorded amounts with matching units and
 
 Preserve the latest settled version within each original chat. Keep informal amounts, ranges, alternatives and unspecified measurements as written. Do not generate missing quantities, timings, temperatures, servings, nutritional values or substitutions. The whole-milk mushroom pie keeps its original amounts; unadopted audit suggestions are not recipe changes. Cooking headings and descriptions organize the recovered content without adding cooking instructions. Chat text was recovered through history search rather than a complete chat export.
 
-Photos are illustrative stock images of related dishes or ingredients, **not photos of these exact recipes**. `content/photos.json` records the photographer, original Unsplash photo page and CDN asset. Credit is shown on the recipe page and at `/photography-credits/`.
+Photos are illustrative images of related dishes or ingredients, **not photos of these exact recipes**. `content/photos.json` records stock photography credits, locally hosted assets, and supplied recipe photos. Credit is shown on the recipe page and at `/photography-credits/`.
+
+The 7 November additions are smoked salmon with scrambled eggs and avocado, halloumi breakfast skillet, and mackerel Niçoise salad. They use the owner's supplied screenshots, with potatoes explicitly included in the mackerel salad. Brief methods organise the ingredient outlines; missing quantities, timings and serving counts stay unspecified. Their existing photos are cropped from the supplied screenshots and labelled as supplied illustrations. No new generated images are used for these recipes.
 
 ## Run
 

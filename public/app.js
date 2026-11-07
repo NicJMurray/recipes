@@ -10,7 +10,7 @@
       const words = normalize(search.value).trim().split(/\s+/).filter(Boolean);
       let count = 0;
       for (const card of cards) {
-        const matchesCategory = active === 'all' || (active === 'quick' ? card.dataset.quick === 'true' : card.dataset.category === active);
+        const matchesCategory = active === 'all' || (active === 'quick' ? card.dataset.quick === 'true' : (card.dataset.category === active || card.dataset.meal === active));
         const matchesText = words.every(word => normalize(card.dataset.search).includes(word));
         card.hidden = !(matchesCategory && matchesText);
         if (!card.hidden) count++;

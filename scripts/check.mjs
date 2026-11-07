@@ -7,7 +7,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'dist');
 const recipes=JSON.parse(await readFile(path.join(root,'content/recipes.json'),'utf8'));
 const photos=JSON.parse(await readFile(path.join(root,'content/photos.json'),'utf8'));
-const expected=['Peanut-soy dressing prawn pasta salad','Blackened Fish Tacos','Apricot Pepper Rice Recipe','Curried Coconut Prawn Udon','Thai-style Salad Recipe','Harissa Tuna Pitta Recipe','Cheddar Jalapeño Egg Burritos','Crispy Chilli Egg Recipe','Mediterranean Squash Recipe','Boursin Salmon Traybake Recipe','Creamy Mushroom Pie Recipe','Lasagne Recipe Transcript'];
+const expected=['Peanut-soy dressing prawn pasta salad','Blackened Fish Tacos','Apricot Pepper Rice Recipe','Curried Coconut Prawn Udon','Thai-style Salad Recipe','Harissa Tuna Pitta Recipe','Cheddar Jalapeño Egg Burritos','Crispy Chilli Egg Recipe','Mediterranean Squash Recipe','Boursin Salmon Traybake Recipe','Creamy Mushroom Pie Recipe','Lasagne Recipe Transcript','Supplied screenshot — Smoked salmon, scrambled eggs & avocado','Supplied screenshot — Halloumi breakfast skillet','Supplied screenshot — Mackerel Niçoise salad'];
 assert.deepEqual(recipes.map(r=>r.sourceChat).sort(),expected.sort(),'Every approved source chat must appear exactly once.');
 assert.equal(new Set(recipes.map(r=>r.slug)).size,recipes.length,'Recipe addresses must be unique.');
 const hub=await readFile(path.join(out,'index.html'),'utf8');
@@ -17,8 +17,9 @@ for(const recipe of recipes){
  assert.match(recipe.slug,/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
  assert.ok(recipe.ingredients.length&&recipe.ingredients.every(g=>g.items.length));
  assert.ok(recipe.steps.length&&recipe.steps.every(s=>s.title&&s.text));
+ assert.ok(['Breakfast','Lunch','Dinner'].includes(recipe.mealType),'Every recipe needs a meal label.');
  const photo=photos[recipe.imageKey];assert.ok(photo?.alt&&photo.by&&(photo.id||photo.src));
- if(photo.generated) await access(path.join(out,photo.src));
+ if(photo.src) await access(path.join(out,photo.src));
  else assert.equal(new URL(photo.page).hostname,'unsplash.com');
  const html=await readFile(path.join(out,'recipes',recipe.slug,'index.html'),'utf8');
  const structured=html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
@@ -26,6 +27,8 @@ for(const recipe of recipes){
  const parsed=JSON.parse(structured);
  assert.equal(parsed.recipeIngredient.length,recipe.ingredients.flatMap(g=>g.items).length);
  assert.equal(parsed.recipeInstructions.length,recipe.steps.length);
+ assert.ok(parsed.recipeCategory.includes(recipe.mealType));
+ assert.ok(html.includes(`<span class="meal-label">${recipe.mealType}</span>`));
  assert.ok(html.includes(`data-slug="${recipe.slug}"`));
  assert.equal((html.match(/data-ingredient="/g)||[]).length,parsed.recipeIngredient.length);
  assert.ok(hub.includes(`/recipes/${recipe.slug}/`));
@@ -59,10 +62,23 @@ assert.ok(planner.includes('https://recipes.njmurray.com/meal-planner/'));
 const plannerData=JSON.parse(planner.match(/<script type="application\/json" id="planner-data">([\s\S]*?)<\/script>/)[1]);
 assert.equal(plannerData.recipes.length,recipes.length);
 assert.ok(!JSON.stringify(plannerData).includes('sourceChat'),'Do not publish source chat metadata.');
+assert.ok(plannerData.recipes.every(recipe=>['Breakfast','Lunch','Dinner'].includes(recipe.mealType)));
 assert.ok((await readFile(path.join(out,'sitemap.xml'),'utf8')).includes('/meal-planner/'));
 for(const recipe of recipes){
  const html=await readFile(path.join(out,'recipes',recipe.slug,'index.html'),'utf8');
  assert.ok(html.includes(`/meal-planner/?add=${recipe.slug}`));
+}
+for(const meal of ['Breakfast','Lunch','Dinner']) assert.ok(hub.includes(`data-filter="${meal}"`));
+for(const recipe of recipes) assert.ok(hub.includes(`data-meal="${recipe.mealType}"`));
+const mackerel=recipes.find(recipe=>recipe.slug==='mackerel-nicoise-salad');
+assert.ok(mackerel.ingredients.flatMap(group=>group.items).includes('Potatoes'),'Potatoes are required in the mackerel salad.');
+for(const slug of ['mackerel-nicoise-salad','smoked-salmon-eggs-avocado','halloumi-breakfast-skillet']){
+ const recipe=recipes.find(recipe=>recipe.slug===slug);
+ assert.ok(recipe);
+ assert.equal(recipe.servings,undefined,'Do not invent servings for the screenshot recipes.');
+ assert.equal(recipe.totalMinutes,undefined,'Do not invent timings for the screenshot recipes.');
+ assert.equal(photos[recipe.imageKey].supplied,true,'Use supplied photos for these recipes.');
+ assert.ok(!photos[recipe.imageKey].generated,'No generated image may be used for these additions.');
 }
 
 

@@ -88,3 +88,17 @@ test('quantity changes invalidate ticks and copied text retains original alterna
   assert.notEqual(list([meal('creamy-mushroom-pie',2)]).find(item => item.name === 'Flour').signature, flour.signature);
   assert.deepEqual(list([]),[]);
 });
+
+test('the screenshot recipes keep potatoes and original informal amounts in the planner', () => {
+  const meals=[meal('mackerel-nicoise-salad',2),meal('smoked-salmon-eggs-avocado'),meal('halloumi-breakfast-skillet')];
+  const items=list(meals);
+  const potatoes=items.find(item=>item.name==='Potatoes');
+  assert.ok(potatoes);
+  assert.equal(potatoes.total,'','No potato quantity was given.');
+  assert.equal(potatoes.sources[0].batches,2);
+  assert.equal(potatoes.sources[0].original,'Potatoes');
+  assert.equal(items.find(item=>item.name==='Avocado').total,'½');
+  assert.equal(items.find(item=>item.name==='Eggs').total,'2 + unmeasured');
+  assert.ok(items.some(item=>item.name==='Mustard vinaigrette'));
+  assert.ok(listAsText(recipes,meals,items,{}).includes('Potatoes'));
+});

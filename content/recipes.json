@@ -59,7 +59,8 @@
         "title": "Bring it together",
         "text": "Flake the salmon back into the dish and toss with the pasta. Loosen with more pasta water as needed. Finish with the lemon juice, black pepper and herbs, with the optional extras if using."
       }
-    ]
+    ],
+    "mealType": "Dinner"
   },
   {
     "slug": "mediterranean-squash-halloumi",
@@ -113,7 +114,8 @@
     ],
     "notes": [
       "The original recipe does not specify amounts for the squash, aubergine, halloumi or peppers, or a serving count. Those amounts have been left as written."
-    ]
+    ],
+    "mealType": "Dinner"
   },
   {
     "slug": "blackened-fish-tacos",
@@ -184,7 +186,8 @@
         "title": "Fill the tacos",
         "text": "Warm the tortillas. Fill with Greek yoghurt, flaked fish and mango salsa. Add lime wedges and feta if using."
       }
-    ]
+    ],
+    "mealType": "Dinner"
   },
   {
     "slug": "creamy-mushroom-pie",
@@ -255,7 +258,8 @@
         "title": "Bake",
         "text": "Bake for 30–35 minutes, until the pastry is crisp and golden. Serve with chives if using."
       }
-    ]
+    ],
+    "mealType": "Dinner"
   },
   {
     "slug": "peanut-soy-prawn-pasta-salad",
@@ -312,7 +316,8 @@
     ],
     "notes": [
       "The original chat allows 2 tbsp rice vinegar in place of the white wine vinegar. If using seasoned rice vinegar, reduce the honey slightly."
-    ]
+    ],
+    "mealType": "Lunch"
   },
   {
     "slug": "curried-coconut-prawn-udon",
@@ -372,7 +377,8 @@
         "title": "Serve",
         "text": "Serve with the green parts of the spring onions and coriander."
       }
-    ]
+    ],
+    "mealType": "Dinner"
   },
   {
     "slug": "apricot-pepper-rice-sea-bass",
@@ -450,7 +456,8 @@
         "title": "Serve",
         "text": "Serve the rice topped with sea bass, tahini dressing, feta, pomegranate seeds and parsley."
       }
-    ]
+    ],
+    "mealType": "Dinner"
   },
   {
     "slug": "thai-style-watermelon-prawn-salad",
@@ -506,7 +513,8 @@
         "title": "Finish",
         "text": "Scatter over the peanuts. Serve immediately or chill for 10 minutes."
       }
-    ]
+    ],
+    "mealType": "Lunch"
   },
   {
     "slug": "harissa-tuna-pitta",
@@ -557,7 +565,8 @@
         "title": "Fill the pitta",
         "text": "Toast the pitta, slice it open and stuff with the tuna and salad. Eat warm and fresh."
       }
-    ]
+    ],
+    "mealType": "Lunch"
   },
   {
     "slug": "cheddar-jalapeno-egg-burritos",
@@ -612,7 +621,8 @@
     ],
     "notes": [
       "Keep in the fridge for up to 3 days or freeze for up to 1 month. Reheat in the oven, toaster oven or air fryer until piping hot, as noted in the original recipe."
-    ]
+    ],
+    "mealType": "Breakfast"
   },
   {
     "slug": "crispy-chilli-egg-smash",
@@ -662,7 +672,8 @@
     "notes": [
       "The original recipe gives 6 minutes of cooking time in its heading and 6–7 minutes for boiling the eggs in the method. Both are preserved.",
       "The original recipe notes up to 3 days in the fridge."
-    ]
+    ],
+    "mealType": "Breakfast"
   },
   {
     "slug": "mrs-murrays-lasagne",
@@ -734,6 +745,127 @@
       {
         "title": "Bake",
         "text": "Bake at 180°C conventional or 160°C fan for about 40 minutes."
+      }
+    ],
+    "mealType": "Dinner"
+  },
+  {
+    "slug": "smoked-salmon-eggs-avocado",
+    "title": "Smoked salmon, scrambled eggs & avocado",
+    "sourceChat": "Supplied screenshot — Smoked salmon, scrambled eggs & avocado",
+    "description": "Buttery scrambled eggs with smoked salmon, half an avocado and lemon.",
+    "category": "Fish & seafood",
+    "mealType": "Breakfast",
+    "tags": [
+      "Eggs",
+      "Salmon"
+    ],
+    "imageKey": "smoked-salmon-eggs-avocado",
+    "ingredients": [
+      {
+        "title": "For the breakfast",
+        "items": [
+          "Eggs",
+          "Butter",
+          "Smoked salmon",
+          "½ avocado",
+          "Lemon"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Scramble the eggs",
+        "text": "Scramble the eggs with butter."
+      },
+      {
+        "title": "Assemble and serve",
+        "text": "Serve with the smoked salmon, half an avocado and lemon."
+      }
+    ]
+  },
+  {
+    "slug": "halloumi-breakfast-skillet",
+    "title": "Halloumi breakfast skillet",
+    "sourceChat": "Supplied screenshot — Halloumi breakfast skillet",
+    "description": "Fried halloumi, mushrooms and spinach with two eggs, chilli flakes and a little olive oil.",
+    "category": "Vegetarian",
+    "mealType": "Breakfast",
+    "tags": [
+      "Eggs",
+      "Halloumi"
+    ],
+    "imageKey": "halloumi-breakfast-skillet",
+    "ingredients": [
+      {
+        "title": "For the skillet",
+        "items": [
+          "Halloumi",
+          "Mushrooms",
+          "Spinach",
+          "2 eggs",
+          "Chilli flakes",
+          "A little olive oil"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Cook the halloumi and vegetables",
+        "text": "Fry the halloumi, mushrooms and spinach in a little olive oil."
+      },
+      {
+        "title": "Cook the eggs",
+        "text": "Fry the two eggs and serve with the halloumi and vegetables."
+      },
+      {
+        "title": "Finish",
+        "text": "Add the chilli flakes and serve."
+      }
+    ]
+  },
+  {
+    "slug": "mackerel-nicoise-salad",
+    "title": "Mackerel Niçoise salad",
+    "sourceChat": "Supplied screenshot — Mackerel Niçoise salad",
+    "description": "Smoked mackerel, boiled eggs, potatoes, green beans, olives and lettuce with a mustard vinaigrette.",
+    "category": "Fish & seafood",
+    "mealType": "Lunch",
+    "tags": [
+      "Salad",
+      "Potatoes"
+    ],
+    "imageKey": "mackerel-nicoise-salad",
+    "ingredients": [
+      {
+        "title": "For the salad",
+        "items": [
+          "Smoked mackerel",
+          "Eggs",
+          "Potatoes",
+          "Green beans",
+          "Olives",
+          "Lettuce",
+          "Mustard vinaigrette"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Cook the potatoes",
+        "text": "Boil the potatoes until tender, then drain."
+      },
+      {
+        "title": "Prepare the eggs and beans",
+        "text": "Boil the eggs and cook the green beans. Peel and halve the eggs."
+      },
+      {
+        "title": "Assemble the salad",
+        "text": "Arrange the lettuce, potatoes, green beans and olives on a plate. Add the smoked mackerel and boiled eggs."
+      },
+      {
+        "title": "Dress and serve",
+        "text": "Finish with the mustard vinaigrette and serve."
       }
     ]
   }
