@@ -868,5 +868,93 @@
         "text": "Finish with the mustard vinaigrette and serve."
       }
     ]
+  },
+  {
+    "slug": "mushroom-stroganoff-gnocchi",
+    "title": "Creamy mushroom stroganoff gnocchi with butter beans",
+    "sourceChat": "Blend recipes customisation",
+    "description": "Creamy, deeply savoury gnocchi with chestnut mushrooms, porcini, butter beans, red wine, Dijon and sour cream.",
+    "category": "Vegetarian",
+    "tags": [
+      "Gnocchi",
+      "One-pan",
+      "Make ahead"
+    ],
+    "imageKey": "mushrooms",
+    "servings": "4",
+    "prep": "10 min",
+    "cook": "30 min",
+    "timeLabel": "40 min",
+    "totalMinutes": 40,
+    "ingredients": [
+      {
+        "title": "Mushrooms & aromatics",
+        "items": [
+          "450g chestnut mushrooms, sliced",
+          "10g dried porcini mushrooms",
+          "100ml boiling water, for soaking porcini",
+          "1 medium brown onion, finely diced",
+          "3 garlic cloves, minced",
+          "1 tbsp olive oil",
+          "20g unsalted butter"
+        ]
+      },
+      {
+        "title": "Gnocchi & stroganoff sauce",
+        "items": [
+          "500g potato gnocchi",
+          "1 × 400g tin butter beans, drained (about 240g)",
+          "75ml dry red wine",
+          "250ml vegetable stock, plus up to 50ml extra",
+          "120g full-fat sour cream",
+          "2 tsp soy sauce",
+          "2 tsp Dijon mustard",
+          "1 tsp tomato purée",
+          "1 tsp sweet paprika",
+          "1 tsp dried thyme (or 3 fresh sprigs)"
+        ]
+      },
+      {
+        "title": "To finish",
+        "items": [
+          "2 tbsp fresh parsley, chopped",
+          "Salt and freshly ground black pepper, to taste"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "title": "Soak the porcini",
+        "text": "Cover the dried porcini with 100ml boiling water and leave for 15 minutes while you start the mushrooms. Lift out and finely chop the porcini. Strain the soaking liquid through a coffee filter or a fine sieve lined with kitchen paper to remove grit; reserve the liquid."
+      },
+      {
+        "title": "Brown the chestnut mushrooms",
+        "text": "Heat the olive oil in a large, deep frying pan over medium-high heat. Brown the sliced chestnut mushrooms in batches if the pan is crowded, cooking until deeply golden and their moisture has evaporated, about 8–10 minutes or a little longer if needed. Avoid constant stirring, then transfer to a bowl."
+      },
+      {
+        "title": "Soften the onion and build the flavour",
+        "text": "Reduce to medium heat. Melt the butter in the pan and cook the diced onion for 4–5 minutes until soft. Add the garlic, chopped porcini, tomato purée, paprika and thyme; stir for 1 minute so the tomato purée darkens slightly."
+      },
+      {
+        "title": "Reduce the wine",
+        "text": "Pour in 75ml red wine, scraping up the browned bits from the base of the pan. Simmer for 2–3 minutes until reduced by about two-thirds and slightly syrupy."
+      },
+      {
+        "title": "Simmer the gnocchi and beans",
+        "text": "Stir in 250ml vegetable stock, 50ml of the strained porcini soaking liquid, soy sauce and Dijon mustard. Add the uncooked gnocchi, drained butter beans and browned mushrooms. Mash 2–3 tablespoons of beans against the side of the pan to thicken the sauce naturally. Simmer gently, uncovered, stirring regularly, for about 5–7 minutes or until the gnocchi are tender and the sauce coats them. Add a splash of the remaining porcini liquid or up to 50ml extra vegetable stock only if needed."
+      },
+      {
+        "title": "Finish off the heat",
+        "text": "Turn off the heat and let bubbling stop. Stir a spoonful of the warm sauce into the full-fat sour cream, then gently fold the sour cream into the pan. Taste before adding salt, as the stock, soy and Dijon already contribute saltiness. Season with freshly ground black pepper and salt if needed. Rest for 2 minutes to thicken, then finish with chopped parsley."
+      }
+    ],
+    "notes": [
+      "For a thick, creamy sauce without flour, start with 250ml vegetable stock and just 50ml of the porcini soaking liquid. Add the reserved liquid or up to 50ml extra stock only to loosen the sauce.",
+      "Use vegetarian potato gnocchi and vegetable stock; this version contains no cheese, flour or meat.",
+      "For meal prep, divide into four shallow containers, cool promptly and refrigerate within 2 hours. Eat refrigerated leftovers within 48 hours under conservative UK guidance; freeze portions for longer storage.",
+      "Reheat once until piping hot throughout, with 1–2 tablespoons water or vegetable stock per portion. Reheat gently and stir to help prevent the sour cream from separating.",
+      "For the best make-ahead texture, prepare the mushroom-and-bean sauce without gnocchi or sour cream. Simmer fresh gnocchi in the sauce when serving, then stir in sour cream off the heat."
+    ],
+    "mealType": "Dinner"
   }
 ]

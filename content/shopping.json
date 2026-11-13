@@ -1587,5 +1587,200 @@
       "category": "Cupboard",
       "quantity": null
     }
+  ],
+  "450g chestnut mushrooms, sliced": [
+    {
+      "name": "Mushrooms",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 450,
+        "max": 450,
+        "unit": "g"
+      }
+    }
+  ],
+  "10g dried porcini mushrooms": [
+    {
+      "name": "Dried porcini mushrooms",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 10,
+        "max": 10,
+        "unit": "g"
+      }
+    }
+  ],
+  "100ml boiling water, for soaking porcini": [
+    {
+      "name": "Water",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 100,
+        "max": 100,
+        "unit": "ml"
+      }
+    }
+  ],
+  "1 medium brown onion, finely diced": [
+    {
+      "name": "Onion",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "medium"
+      }
+    }
+  ],
+  "3 garlic cloves, minced": [
+    {
+      "name": "Garlic",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 3,
+        "max": 3,
+        "unit": "cloves"
+      }
+    }
+  ],
+  "1 tbsp olive oil": [
+    {
+      "name": "Olive oil",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "20g unsalted butter": [
+    {
+      "name": "Butter",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 20,
+        "max": 20,
+        "unit": "g"
+      }
+    }
+  ],
+  "500g potato gnocchi": [
+    {
+      "name": "Potato gnocchi",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 500,
+        "max": 500,
+        "unit": "g"
+      }
+    }
+  ],
+  "1 × 400g tin butter beans, drained (about 240g)": [
+    {
+      "name": "Butter beans",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "400g tin"
+      }
+    }
+  ],
+  "75ml dry red wine": [
+    {
+      "name": "Red wine",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 75,
+        "max": 75,
+        "unit": "ml"
+      }
+    }
+  ],
+  "250ml vegetable stock, plus up to 50ml extra": [
+    {
+      "name": "Vegetable stock",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 250,
+        "max": 300,
+        "unit": "ml"
+      }
+    }
+  ],
+  "120g full-fat sour cream": [
+    {
+      "name": "Sour cream",
+      "category": "Dairy & eggs",
+      "quantity": {
+        "min": 120,
+        "max": 120,
+        "unit": "g"
+      }
+    }
+  ],
+  "2 tsp soy sauce": [
+    {
+      "name": "Soy sauce",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "1 tsp tomato purée": [
+    {
+      "name": "Tomato purée",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "1 tsp sweet paprika": [
+    {
+      "name": "Sweet paprika",
+      "category": "Cupboard",
+      "quantity": {
+        "min": 1,
+        "max": 1,
+        "unit": "tsp"
+      }
+    }
+  ],
+  "1 tsp dried thyme (or 3 fresh sprigs)": [
+    {
+      "name": "Thyme (dried or fresh)",
+      "category": "Fruit & vegetables",
+      "quantity": null
+    }
+  ],
+  "2 tbsp fresh parsley, chopped": [
+    {
+      "name": "Parsley",
+      "category": "Fruit & vegetables",
+      "quantity": {
+        "min": 2,
+        "max": 2,
+        "unit": "tbsp"
+      }
+    }
+  ],
+  "Salt and freshly ground black pepper, to taste": [
+    {
+      "name": "Salt",
+      "category": "Cupboard",
+      "quantity": null
+    },
+    {
+      "name": "Black pepper",
+      "category": "Cupboard",
+      "quantity": null
+    }
   ]
 }

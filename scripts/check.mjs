@@ -7,7 +7,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const out=path.join(root,'dist');
 const recipes=JSON.parse(await readFile(path.join(root,'content/recipes.json'),'utf8'));
 const photos=JSON.parse(await readFile(path.join(root,'content/photos.json'),'utf8'));
-const expected=['Peanut-soy dressing prawn pasta salad','Blackened Fish Tacos','Apricot Pepper Rice Recipe','Curried Coconut Prawn Udon','Thai-style Salad Recipe','Harissa Tuna Pitta Recipe','Cheddar Jalapeño Egg Burritos','Crispy Chilli Egg Recipe','Mediterranean Squash Recipe','Boursin Salmon Traybake Recipe','Creamy Mushroom Pie Recipe','Lasagne Recipe Transcript','Supplied screenshot — Smoked salmon, scrambled eggs & avocado','Supplied screenshot — Halloumi breakfast skillet','Supplied screenshot — Mackerel Niçoise salad'];
+const expected=['Peanut-soy dressing prawn pasta salad','Blackened Fish Tacos','Apricot Pepper Rice Recipe','Curried Coconut Prawn Udon','Thai-style Salad Recipe','Harissa Tuna Pitta Recipe','Cheddar Jalapeño Egg Burritos','Crispy Chilli Egg Recipe','Mediterranean Squash Recipe','Boursin Salmon Traybake Recipe','Creamy Mushroom Pie Recipe','Lasagne Recipe Transcript','Supplied screenshot — Smoked salmon, scrambled eggs & avocado','Supplied screenshot — Halloumi breakfast skillet','Supplied screenshot — Mackerel Niçoise salad','Blend recipes customisation'];
 assert.deepEqual(recipes.map(r=>r.sourceChat).sort(),expected.sort(),'Every approved source chat must appear exactly once.');
 assert.equal(new Set(recipes.map(r=>r.slug)).size,recipes.length,'Recipe addresses must be unique.');
 const hub=await readFile(path.join(out,'index.html'),'utf8');
@@ -82,3 +82,11 @@ for(const slug of ['mackerel-nicoise-salad','smoked-salmon-eggs-avocado','hallou
 }
 
 
+
+const stroganoff=recipes.find(recipe=>recipe.slug==='mushroom-stroganoff-gnocchi');
+assert.ok(stroganoff,'The approved stroganoff gnocchi should be present.');
+assert.equal(stroganoff.servings,'4');
+assert.equal(stroganoff.mealType,'Dinner');
+for(const ingredient of ['10g dried porcini mushrooms','75ml dry red wine','120g full-fat sour cream','2 tsp soy sauce','1 tsp tomato purée']){
+ assert.ok(stroganoff.ingredients.flatMap(group=>group.items).includes(ingredient),`Missing approved ingredient: ${ingredient}`);
+}
