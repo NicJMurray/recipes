@@ -93,3 +93,7 @@ assert.equal(stroganoff.mealType,'Dinner');
 for(const ingredient of ['10g dried porcini mushrooms','75ml dry red wine','120g full-fat sour cream','2 tsp soy sauce','1 tsp vegetarian Worcestershire sauce (anchovy-free)','1 tsp tomato purée']){
  assert.ok(stroganoff.ingredients.flatMap(group=>group.items).includes(ingredient),`Missing approved ingredient: ${ingredient}`);
 }
+
+const photoPolicy=await readFile(path.join(out,'_headers'),'utf8');
+assert.ok(photoPolicy.includes('https://images.pexels.com'),'Allow the approved Pexels photo to render under CSP.');
+assert.ok(photos['stroganoff-gnocchi'].src.startsWith('https://images.pexels.com/photos/15611223/pexels-photo-15611223.jpeg'),'Use the canonical photo asset.');
