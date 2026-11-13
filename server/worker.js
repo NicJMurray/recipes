@@ -10,7 +10,7 @@ const securityHeaders = {
   'Referrer-Policy':'strict-origin-when-cross-origin',
   'X-Frame-Options':'SAMEORIGIN',
   'Permissions-Policy':'camera=(), microphone=(), geolocation=()',
-  'Content-Security-Policy':"default-src 'self'; img-src 'self' blob: https://images.unsplash.com; style-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+  'Content-Security-Policy':"default-src 'self'; img-src 'self' blob: https://images.unsplash.com https://images.pexels.com; style-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
 };
 
 class HttpError extends Error {
