@@ -71,7 +71,7 @@ test('only authenticated photo uploads publish; metadata is removed and images h
 });
 test('public original recipes remain complete without authentication or browser JavaScript',async()=>{
  const f=await fixture();for(const recipe of recipes){const response=await f.request(`/recipes/${recipe.slug}/`);assert.equal(response.status,200);const html=await response.text();assert.ok(html.includes('id="ingredients"'));assert.ok(html.includes('id="method"'));assert.ok(html.includes('id="admin-login"'));assert.ok(!html.includes('test-passphrase'));}
- const html=await (await f.request('/')).text();assert.equal((html.match(/data-recipe data-category/g)||[]).length,15);assert.ok(!html.includes('<footer'));assert.ok(html.includes('page-end-space'));f.db.close();
+ const html=await (await f.request('/')).text();assert.equal((html.match(/data-recipe data-category/g)||[]).length,recipes.length);assert.ok(!html.includes('<footer'));assert.ok(html.includes('page-end-space'));f.db.close();
 });
 test('edited plain amounts combine while ambiguous new wording stays explicit',()=>{
  assert.deepEqual(inferShoppingEntry('100g pasta',mapping),[{name:'Pasta',category:'Cupboard',quantity:{min:100,max:100,unit:'g'}}]);
