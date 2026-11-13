@@ -94,5 +94,13 @@
     "supplied": true,
     "width": 389,
     "height": 306
+  },
+  "stroganoff-gnocchi": {
+    "src": "https://images.pexels.com/photos/15611223/pexels-photo-15611223/free-photo-of-soup-in-bowl-on-table.jpeg?auto=compress&dpr=1&h=750&w=1260",
+    "by": "Nadin Sh",
+    "page": "https://www.pexels.com/photo/soup-in-bowl-on-table-15611223/",
+    "alt": "Illustrative photo of gnocchi in rich mushroom sauce served in a blue bowl",
+    "width": 1260,
+    "height": 750
   }
 }

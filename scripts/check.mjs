@@ -19,7 +19,8 @@ for(const recipe of recipes){
  assert.ok(recipe.steps.length&&recipe.steps.every(s=>s.title&&s.text));
  assert.ok(['Breakfast','Lunch','Dinner'].includes(recipe.mealType),'Every recipe needs a meal label.');
  const photo=photos[recipe.imageKey];assert.ok(photo?.alt&&photo.by&&(photo.id||photo.src));
- if(photo.src) await access(path.join(out,photo.src));
+ if(photo.src && /^https:\/\//.test(photo.src)) { assert.equal(new URL(photo.src).hostname,'images.pexels.com'); assert.equal(new URL(photo.page).hostname,'www.pexels.com'); }
+ else if(photo.src) await access(path.join(out,photo.src));
  else assert.equal(new URL(photo.page).hostname,'unsplash.com');
  const html=await readFile(path.join(out,'recipes',recipe.slug,'index.html'),'utf8');
  const structured=html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
@@ -86,7 +87,9 @@ for(const slug of ['mackerel-nicoise-salad','smoked-salmon-eggs-avocado','hallou
 const stroganoff=recipes.find(recipe=>recipe.slug==='mushroom-stroganoff-gnocchi');
 assert.ok(stroganoff,'The approved stroganoff gnocchi should be present.');
 assert.equal(stroganoff.servings,'4');
+assert.equal(stroganoff.title,'Mushroom stroganoff gnocchi with butter beans');
+assert.equal(stroganoff.imageKey,'stroganoff-gnocchi');
 assert.equal(stroganoff.mealType,'Dinner');
-for(const ingredient of ['10g dried porcini mushrooms','75ml dry red wine','120g full-fat sour cream','2 tsp soy sauce','1 tsp tomato purée']){
+for(const ingredient of ['10g dried porcini mushrooms','75ml dry red wine','120g full-fat sour cream','2 tsp soy sauce','1 tsp vegetarian Worcestershire sauce (anchovy-free)','1 tsp tomato purée']){
  assert.ok(stroganoff.ingredients.flatMap(group=>group.items).includes(ingredient),`Missing approved ingredient: ${ingredient}`);
 }
