@@ -30,11 +30,10 @@ enabled here.** GitHub history grows even after photos are removed; review repos
 size as the collection grows. Free service quotas still apply. Do not enable spending
 or paid plans for this implementation.
 
-The old gallery has no capture timestamps, so it retains natural filename order
-(e.g. DSCF0477 before DSCF0509), and new camera-sequence filenames slot into it.
-Capture dates from EXIF or date-shaped filenames are retained. When all visible photos
-have dates, the gallery uses oldest-first capture-date order. Upload order is never
-used as a claimed capture date.
+The gallery shows the newest photographs first, using capture dates from EXIF or
+date-shaped filenames. Undated new uploads use their publish time as a fallback;
+that time is kept separately from capture time. The old gallery has no capture
+timestamps, so those photographs follow in descending natural filename order.
 
 Removing a photo hides it from the public gallery and disables the shared media URL.
 The existing static originals and Git history remain recoverable; removal is not an
@@ -56,7 +55,7 @@ a personal token into a chat, source file, build variable, browser localStorage 
    token value. Do not replace `ADMIN_AUTH`, `ADMIN_ORIGIN`, `NODE_VERSION` or `RECIPES_DB`.
 6. Redeploy the latest `recipes` production deployment so it receives the new secret.
 7. Visit <https://photography.njmurray.com/>, use the small **Log in** control with the
-   existing recipe credentials, and choose **Upload photos**. A login at recipes or
+   existing recipe credentials in the top navigation, and choose **Upload photos**. A login at recipes or
    the homepage also works; return to an already open tab to refresh its session.
 
 The API writes only predetermined image paths on photography's `main` branch; it uses

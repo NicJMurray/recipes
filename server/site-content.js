@@ -15,7 +15,7 @@ function base64(bytes) {
   return btoa(value);
 }
 function manifestPhoto(row) {
-  return {id:row.id,file:row.file,title:row.title,alt:row.alt,width:row.width,height:row.height,capturedAt:row.captured_at,src:`${MEDIA_ORIGIN}/media/photography/${row.id}/960.webp`,large:`${MEDIA_ORIGIN}/media/photography/${row.id}/1920.webp`};
+  return {id:row.id,file:row.file,title:row.title,alt:row.alt,width:row.width,height:row.height,capturedAt:row.captured_at,createdAt:row.created_at,src:`${MEDIA_ORIGIN}/media/photography/${row.id}/960.webp`,large:`${MEDIA_ORIGIN}/media/photography/${row.id}/1920.webp`};
 }
 function webpSize(bytes,fail) {
   const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
@@ -81,13 +81,22 @@ export async function handleSiteContent(request,env,url,helpers) {
     const row=await db.prepare('SELECT commit_sha FROM gallery_photos WHERE id=? AND deleted_at IS NULL').bind(match[1]).first();
     if(!row||!/^[a-f0-9]{40}$/.test(row.commit_sha))throw new HttpError(404,'Photo not found.');
     const file=`photos/uploads/${match[1]}/${match[2]}.webp`;
-    // Prefer the existing Pages CDN once its automatic Git build is ready.
-    let upstream=await fetch(`https://photography.njmurray.com/${file}`,{method:request.method,redirect:'error'});
-    if(!upstream.ok||!upstream.headers.get('content-type')?.startsWith('image/webp')) {
-      await upstream.body?.cancel();
-      upstream=await fetch(`https://raw.githubusercontent.com/${REPOSITORY}/${row.commit_sha}/${file}`,{method:request.method,redirect:'error'});
+    // Workers supports manual redirects, but not Fetch's redirect:'error'.
+    // Only accept image responses from these two fixed locations, without
+    // following redirects or forwarding browser cookies or storage credentials.
+    let upstream;
+    for(const source of [`https://photography.njmurray.com/${file}`,`https://raw.githubusercontent.com/${REPOSITORY}/${row.commit_sha}/${file}`]) {
+      try {
+        const response=await fetch(source,{method:request.method,redirect:'manual'});
+        if(response.ok&&response.headers.get('content-type')?.split(';')[0].trim()==='image/webp') {
+          upstream=response;break;
+        }
+        await response.body?.cancel();
+      } catch {
+        // A CDN network error must still allow the immutable GitHub fallback.
+      }
     }
-    if(!upstream.ok){await upstream.body?.cancel();throw new HttpError(503,'This photo is still becoming available. Please try again shortly.');}
+    if(!upstream)throw new HttpError(503,'This photo is temporarily unavailable. Please try again shortly.');
     // An immutable Git commit supplies the bytes, so uploads are immediately usable
     // while the existing Pages build catches up. No GitHub credential is sent here.
     return new Response(request.method==='HEAD'?null:upstream.body,{headers:{'Content-Type':'image/webp','X-Content-Type-Options':'nosniff','Cache-Control':'public, max-age=3600','Access-Control-Allow-Origin':'*','Referrer-Policy':'no-referrer'}});
@@ -141,7 +150,7 @@ export async function handleSiteContent(request,env,url,helpers) {
       if(duplicate)return json({photo:manifestPhoto(duplicate),duplicate:true});
       throw error;
     }
-    return json({photo:manifestPhoto({id,file:meta.file,title,alt,width:meta.width,height:meta.height,captured_at:capturedAt})},201);
+    return json({photo:manifestPhoto({id,file:meta.file,title,alt,width:meta.width,height:meta.height,captured_at:capturedAt,created_at:now})},201);
   }
   const deletion=path.match(/^\/api\/shared\/gallery\/([^/]+)$/);
   if(deletion&&request.method==='DELETE') {

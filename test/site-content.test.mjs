@@ -41,22 +41,28 @@ function addChunk(bytes,type,payload){
   const view=new DataView(result.buffer);view.setUint32(offset+4,data.length,true);result.set(data,offset+8);
   view.setUint32(4,result.length-8,true);return result;
 }
-function mockGithub(t,{conflicts=0,failStatus=0,rawStatus=200,pagesStatus=404,pagesType='image/webp'}={}){
+function mockGithub(t,{conflicts=0,failStatus=0,rawStatus=200,rawType='image/webp',rawThrows=false,pagesStatus=404,pagesType='image/webp',pagesThrows=false}={}){
   const calls=[];let head=sha('1'),blobNumber=0,treeNumber=0,commitNumber=0,remainingConflicts=conflicts;
   t.mock.method(globalThis,'fetch',async(input,options={})=>{
     const url=new URL(typeof input==='string'?input:input.url),method=options.method||'GET';
     const body=typeof options.body==='string'?JSON.parse(options.body):options.body;
     calls.push({url:url.href,method,headers:new Headers(options.headers),body,redirect:options.redirect});
+    // Workers accepts manual or follow, and throws for redirect: error.
+    if(options.redirect==='error')throw new TypeError('Unsupported redirect mode: error');
     if(url.hostname==='photography.njmurray.com'){
       assert.ok(url.pathname.startsWith('/photos/uploads/'));
+      assert.equal(options.redirect,'manual','Media redirects must never be followed.');
       assert.equal(new Headers(options.headers).get('authorization'),null);
       assert.equal(new Headers(options.headers).get('cookie'),null);
+      if(pagesThrows)throw new TypeError('Static image network failure');
       return new Response(method==='HEAD'?null:photo,{status:pagesStatus,headers:{'Content-Type':pagesType}});
     }
     if(url.hostname==='raw.githubusercontent.com'){
+      assert.equal(options.redirect,'manual','Immutable media fetches must not follow redirects.');
       assert.equal(new Headers(options.headers).get('authorization'),null,'Public media fetches never carry a GitHub token.');
       assert.equal(new Headers(options.headers).get('cookie'),null,'Browser session cookies never reach GitHub.');
-      return new Response(method==='HEAD'?null:photo,{status:rawStatus,headers:{'Content-Type':'image/webp'}});
+      if(rawThrows)throw new TypeError('Raw image network failure');
+      return new Response(method==='HEAD'?null:photo,{status:rawStatus,headers:{'Content-Type':rawType,...(rawStatus>=300&&rawStatus<400?{'Location':'https://untrusted.example/redirected-image'}:{})}});
     }
     assert.equal(url.origin,'https://api.github.com','No unmocked network access is permitted.');
     assert.ok(url.pathname.startsWith('/repos/NicJMurray/photography/'));
@@ -162,13 +168,14 @@ test('uploads strip location metadata, commit both sizes safely and return dupli
   const response=await f.request('/api/shared/gallery',{method:'POST',cookie,body:multipart({small:dirty,large:dirty})});
   assert.equal(response.status,201);const result=await response.json();assert.match(result.photo.id,/^upload-[a-f0-9-]{36}$/);
   assert.equal(result.photo.capturedAt,'2026-01-02T12:30:00.000Z');
+  assert.match(result.photo.createdAt,/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/);
   const blobs=github.calls.filter(call=>call.url.endsWith('/git/blobs'));
   assert.equal(blobs.length,2);
   for(const call of blobs){assert.equal(call.body.encoding,'base64');assert.deepEqual(new Uint8Array(Buffer.from(call.body.content,'base64')),photo,'EXIF and XMP bytes never reach GitHub.');}
   const tree=github.calls.find(call=>call.url.endsWith('/git/trees'));
   assert.deepEqual(tree.body.tree.map(entry=>entry.path),[`photos/uploads/${result.photo.id}/960.webp`,`photos/uploads/${result.photo.id}/1920.webp`]);
   assert.ok(tree.body.tree.every(entry=>entry.mode==='100644'&&entry.type==='blob'));
-  const row=f.db.sqlite.prepare('SELECT * FROM gallery_photos').get();assert.equal(row.commit_sha,github.head);assert.equal(row.width,389);assert.equal(row.height,306);
+  const row=f.db.sqlite.prepare('SELECT * FROM gallery_photos').get();assert.equal(row.commit_sha,github.head);assert.equal(row.width,389);assert.equal(row.height,306);assert.equal(result.photo.createdAt,row.created_at);
   const published=await (await f.request('/api/shared/gallery',{source:null})).json();
   assert.deepEqual(published.photos,[result.photo]);assert.ok(!JSON.stringify(published).includes(fakeToken));assert.ok(!JSON.stringify(published).includes(row.fingerprint));
   const callCount=github.calls.length;
@@ -204,7 +211,7 @@ test('public media uses the saved immutable Git commit without browser or GitHub
   const mediaPath=new URL(uploaded.photo.src).pathname,pinned=f.db.sqlite.prepare('SELECT commit_sha FROM gallery_photos').get().commit_sha;
   const image=await f.request(mediaPath,{source:null});assert.equal(image.status,200);assert.equal(image.headers.get('content-type'),'image/webp');assert.equal(image.headers.get('x-content-type-options'),'nosniff');
   assert.deepEqual(new Uint8Array(await image.arrayBuffer()),photo);
-  const raw=github.calls.at(-1);assert.equal(raw.url,`https://raw.githubusercontent.com/NicJMurray/photography/${pinned}/photos/uploads/${uploaded.photo.id}/960.webp`);assert.equal(raw.redirect,'error');
+  const raw=github.calls.at(-1);assert.equal(raw.url,`https://raw.githubusercontent.com/NicJMurray/photography/${pinned}/photos/uploads/${uploaded.photo.id}/960.webp`);assert.equal(raw.redirect,'manual');
   const head=await f.request(mediaPath,{method:'HEAD',source:null});assert.equal(head.status,200);assert.equal((await head.arrayBuffer()).byteLength,0);assert.equal(github.calls.at(-1).method,'HEAD');
   const count=github.calls.length;
   assert.equal((await f.request(mediaPath.replace('/960.webp','/original.jpg'),{source:null})).status,404);assert.equal(github.calls.length,count);
@@ -249,9 +256,50 @@ test('media serves deployed image bytes first and fails safely if both delivery 
   // Replace the delivery stub only; there are no further authenticated writes.
   const failed=[];
   t.mock.method(globalThis,'fetch',async(url,options={})=>{
+    assert.equal(options.redirect,'manual');
     assert.equal(new Headers(options.headers).get('authorization'),null);
+    assert.equal(new Headers(options.headers).get('cookie'),null);
     failed.push(String(url));return new Response('Unavailable',{status:503});
   });
   assert.equal((await f.request(path,{source:null})).status,503);
   assert.equal(failed.length,2);assert.match(failed[1],/^https:\/\/raw\.githubusercontent\.com\/NicJMurray\/photography\/[a-f0-9]{40}\//);
+});
+
+
+test('static image network errors fall back to immutable raw media in the Workers redirect mode',async t=>{
+  const f=fixture(t),github=mockGithub(t,{pagesThrows:true}),cookie=await f.login();
+  const uploaded=await (await f.request('/api/shared/gallery',{method:'POST',cookie,body:multipart()})).json();
+  const before=github.calls.length;
+  const response=await f.request(new URL(uploaded.photo.src).pathname,{source:null});
+  assert.equal(response.status,200);assert.deepEqual(new Uint8Array(await response.arrayBuffer()),photo);
+  const media=github.calls.slice(before);assert.equal(media.length,2);
+  assert.equal(new URL(media[0].url).hostname,'photography.njmurray.com');
+  assert.equal(new URL(media[1].url).hostname,'raw.githubusercontent.com');
+  assert.ok(media.every(call=>call.redirect==='manual'&&!call.headers.has('authorization')&&!call.headers.has('cookie')));
+});
+
+test('network failures from both media sources produce a specific photo error',async t=>{
+  const f=fixture(t),github=mockGithub(t,{pagesThrows:true,rawThrows:true}),cookie=await f.login();
+  const uploaded=await (await f.request('/api/shared/gallery',{method:'POST',cookie,body:multipart()})).json();
+  const before=github.calls.length;
+  const response=await f.request(new URL(uploaded.photo.src).pathname,{source:null});
+  assert.equal(response.status,503);
+  assert.deepEqual(await response.json(),{error:'This photo is temporarily unavailable. Please try again shortly.'});
+  assert.equal(github.calls.length,before+2);
+});
+
+test('raw media must be WebP even on HTTP 200 and raw redirects are rejected without following them',async t=>{
+  for(const options of [{rawType:'text/html'},{rawStatus:302}]){
+    await t.test(JSON.stringify(options),async sub=>{
+      const f=fixture(sub),github=mockGithub(sub,options),cookie=await f.login();
+      const uploaded=await (await f.request('/api/shared/gallery',{method:'POST',cookie,body:multipart()})).json();
+      const before=github.calls.length;
+      const response=await f.request(new URL(uploaded.photo.src).pathname,{source:null});
+      assert.equal(response.status,503);
+      assert.deepEqual(await response.json(),{error:'This photo is temporarily unavailable. Please try again shortly.'});
+      const calls=github.calls.slice(before);assert.equal(calls.length,2);
+      assert.ok(calls.every(call=>call.redirect==='manual'&&!call.headers.has('authorization')&&!call.headers.has('cookie')));
+      assert.ok(calls.every(call=>new URL(call.url).hostname!=='untrusted.example'));
+    });
+  }
 });
