@@ -2,7 +2,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {readFileSync} from 'node:fs';
 export function createDatabase(filename=':memory:'){
   const sqlite=new DatabaseSync(filename);
-  sqlite.exec(readFileSync(new URL('../server/schema.sql',import.meta.url),'utf8'));
+  for(const file of ['schema.sql','site-schema.sql'])sqlite.exec(readFileSync(new URL('../server/'+file,import.meta.url),'utf8'));
   const convert=x=>x instanceof ArrayBuffer?new Uint8Array(x):x;
   class Statement{
     constructor(sql,values=[]){this.sql=sql;this.values=values;}

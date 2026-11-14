@@ -16,3 +16,10 @@
 
 /admin.js
   Cache-Control: public, max-age=0, must-revalidate
+
+/shared-admin.js
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=0, must-revalidate
+/shared-admin.css
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=0, must-revalidate

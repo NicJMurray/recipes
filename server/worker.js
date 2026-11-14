@@ -1,6 +1,8 @@
 import {createRenderer} from './render.js';
+import {handleSiteContent} from './site-content.js';
 
 const SESSION_COOKIE = '__Host-recipe_admin';
+const SHARED_ORIGINS = new Set(['https://recipes.njmurray.com','https://photography.njmurray.com','https://njmurray.com','https://www.njmurray.com']);
 const SESSION_SECONDS = 7 * 24 * 60 * 60;
 const MAX_PHOTO_BYTES = 1000000;
 const encoder = new TextEncoder();
@@ -83,6 +85,29 @@ function checkOrigin(request,env) {
   const origin=new URL(request.url).origin;
   if(request.headers.get('origin')!==origin || (env.ADMIN_ORIGIN && origin!==env.ADMIN_ORIGIN)) throw new HttpError(403,'This request must come from the recipe website.');
 }
+function checkSharedOrigin(request,env) {
+  // Keep the authentication host fixed even when the deployment also has a
+  // pages.dev address. Only the explicitly trusted public sites may edit.
+  const host=new URL(request.url).origin;
+  const expected=env.ADMIN_ORIGIN||'https://recipes.njmurray.com';
+  const origin=request.headers.get('origin');
+  if(host!==expected || !origin || !(SHARED_ORIGINS.has(origin) || origin===expected))throw new HttpError(403,'Open one of your websites to edit.');
+}
+function sharedCors(request,response) {
+  const origin=request.headers.get('origin');
+  // A response to an untrusted caller never opts into credentialed CORS.
+  if(!SHARED_ORIGINS.has(origin))return response;
+  const headers=new Headers(response.headers);
+  headers.set('Access-Control-Allow-Origin',origin);
+  headers.set('Access-Control-Allow-Credentials','true');
+  headers.set('Vary','Cookie, Origin');
+  if(request.method==='OPTIONS'){
+    headers.set('Access-Control-Allow-Methods','GET, POST, PUT, DELETE, OPTIONS');
+    headers.set('Access-Control-Allow-Headers','Content-Type');
+    headers.set('Access-Control-Max-Age','600');
+  }
+  return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+}
 function cookieToken(request) {
   const token=request.headers.get('cookie')?.split(';').map(part=>part.trim()).find(part=>part.startsWith(`${SESSION_COOKIE}=`))?.slice(SESSION_COOKIE.length+1);
   return token && /^[a-f0-9]{64}$/.test(token) ? token : null;
@@ -95,8 +120,9 @@ async function session(request,env) {
   return row && row.expires_at>Date.now() ? {tokenHash} : null;
 }
 async function requireSession(request,env) {
+  if(!authConfig(env)||!env.RECIPES_DB)throw new HttpError(503,'Editing is temporarily unavailable.');
   const active=await session(request,env);
-  if(!active)throw new HttpError(401,'Please log in to edit recipes.');
+  if(!active)throw new HttpError(401,'Please log in to edit.');
   return active;
 }
 const cookie = (token,age=SESSION_SECONDS) => `${SESSION_COOKIE}=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${age}`;
@@ -213,7 +239,17 @@ export function createApp(seedRecipes,seedPhotos,shoppingMapping,assets) {
 
   async function api(request,env,url) {
     const auth=authConfig(env);
-    if(!['GET','HEAD'].includes(request.method))checkOrigin(request,env);
+    const shared=url.pathname.startsWith('/api/shared/');
+    if(shared){
+      // All writes (including login and logout) have an exact Origin check.
+      if(!['GET','HEAD'].includes(request.method))checkSharedOrigin(request,env);
+      else if(request.headers.has('origin')&&!SHARED_ORIGINS.has(request.headers.get('origin')))throw new HttpError(403,'Open one of your websites to edit.');
+      if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{'Cache-Control':'private, no-store'}});
+      const content=await handleSiteContent(request,env,url,{json,HttpError,readJson,readBody,cleanWebp,requireSession});
+      if(content)return content;
+      if(!['/api/shared/session','/api/shared/login','/api/shared/logout'].includes(url.pathname))throw new HttpError(404,'That editor action was not found.');
+      url=new URL(url);url.pathname=url.pathname.replace('/api/shared/','/api/');
+    }else if(!['GET','HEAD'].includes(request.method))checkOrigin(request,env);
     if(url.pathname==='/api/session'&&request.method==='GET'){
       const active=auth?await session(request,env):null;
       return json({authenticated:Boolean(active),available:Boolean(auth&&env.RECIPES_DB),...(active?{username:auth.username}:{} )});
@@ -277,6 +313,11 @@ export function createApp(seedRecipes,seedPhotos,shoppingMapping,assets) {
   async function handle(request,env) {
     const url=new URL(request.url);
     if(url.pathname.startsWith('/api/'))return api(request,env,url);
+    if(url.pathname.startsWith('/media/photography/')){
+      const response=await handleSiteContent(request,env,url,{json,HttpError,readJson,readBody,cleanWebp,requireSession});
+      if(response)return response;
+      throw new HttpError(404,'Photo not found.');
+    }
     if(url.pathname.startsWith('/uploads/')){
       if(!['GET','HEAD'].includes(request.method))throw new HttpError(405,'Method not allowed.');
       const id=url.pathname.slice('/uploads/'.length);
@@ -310,11 +351,13 @@ export function createApp(seedRecipes,seedPhotos,shoppingMapping,assets) {
   }
 
   return {async fetch(request,env,ctx){
-    try{return await handle(request,env);}
+    const shared=new URL(request.url).pathname.startsWith('/api/shared/');
+    const respond=response=>shared?sharedCors(request,response):response;
+    try{return respond(await handle(request,env));}
     catch(error){
-      if(error instanceof HttpError)return json({error:error.message},error.status,error.headers);
+      if(error instanceof HttpError)return respond(json({error:error.message},error.status,error.headers));
       console.error(JSON.stringify({event:'recipe_request_failed',path:new URL(request.url).pathname}));
-      return json({error:'The recipe book is temporarily unavailable. Please try again.'},503);
+      return respond(json({error:'The recipe book is temporarily unavailable. Please try again.'},503));
     }
   }};
 }

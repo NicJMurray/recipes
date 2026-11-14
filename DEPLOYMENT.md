@@ -35,8 +35,21 @@ Production bindings:
 - `ADMIN_ORIGIN`: `https://recipes.njmurray.com`.
 - Preserve `NODE_VERSION`. No preview credentials or fixture sessions are accepted in production. Read replication stays disabled for immediate read-after-write consistency.
 
-Initialize `server/schema.sql` once before deploying. All statements are idempotent. Keep the database and secret across deployments. `recipes` stores published overrides and revisions; `recipe_versions` stores the last 30 previous versions. `recipe_photos` stores WebP blobs up to 1 MB each, below D1's row limit. This small collection uses D1 for media without requiring R2 activation. Monitor database storage as photos accumulate. Export/back up D1 before destructive migrations; the original seeds are still in Git.
+Initialize `server/schema.sql` and `server/site-schema.sql` once before deploying. All statements are idempotent; the new site schema adds gallery and homepage tables without altering recipe data. Keep the database and secret across deployments. `recipes` stores published overrides and revisions; `recipe_versions` stores the last 30 previous versions. `recipe_photos` stores WebP blobs up to 1 MB each, below D1's row limit. This small collection uses D1 for media without requiring R2 activation. Monitor database storage as photos accumulate. Export/back up D1 before destructive migrations; the original seeds are still in Git.
 
-Login rate limits: five failed attempts per IP per 15-minute window, twenty across the account per hour, eighty per day. Successful logins release their reservations. Sessions expire after seven days and logout revokes the current session. Credential changes should also revoke outstanding sessions. Origin checks restrict mutation requests to the custom domain, including when the same build is accessible through pages.dev.
+Login rate limits: five failed attempts per IP per 15-minute window, twenty across the account per hour, eighty per day. Successful logins release their reservations. Sessions expire after seven days and logout revokes the current session. Credential changes should also revoke outstanding sessions. Origin checks restrict recipe mutation requests to the custom domain, including when the same build is accessible through pages.dev. Shared editing routes use the separate production-origin allowlist below.
 
 Run build and checks, verify the exact Git deployment commit, then check the custom domain, session availability and login/editor flow. For local UI tests use only `npm run dev` and its disposable fixture login; never add a production bypass.
+
+
+## Shared authentication
+
+Keep the existing `ADMIN_AUTH`, `ADMIN_ORIGIN` and `RECIPES_DB` bindings. No authentication secret or session cookie is copied to photography or homepage. Those sites load the public `/shared-admin.js` module and `/shared-admin.css` stylesheet and call `/api/shared/session`, `/api/shared/login` and `/api/shared/logout` using `credentials: include`. Their Content Security Policy must allow the recipes origin for scripts, styles and connections. Public module and stylesheet responses allow credentialless cross-origin loading; authenticated API responses allow only the four named production origins.
+
+The `__Host-recipe_admin` cookie retains `Path=/; HttpOnly; Secure; SameSite=Strict` and no Domain attribute. It continues working for existing recipe sessions. The shared APIs accept writes only on the canonical `ADMIN_ORIGIN` host and only from the explicit recipes, photography, apex or www origin. Never add wildcard subdomains or preview credentials to this allowlist. An authenticated UI is progressive enhancement; it must not gate public browsing.
+
+## Website-wide editing and GitHub photographs
+
+See [SHARED-EDITING.md](SHARED-EDITING.md) for the storage decision, secure one-time
+`PHOTO_GITHUB_TOKEN` setup, additive `server/site-schema.sql` migration, reusable
+client API and operational limits. No R2 subscription or new billing is required.

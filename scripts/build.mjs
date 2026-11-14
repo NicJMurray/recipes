@@ -20,11 +20,12 @@ for(const recipe of recipes)pages[`recipes/${recipe.slug}/index.html`]=rendered.
 for(const [filename,html] of Object.entries(pages)){await mkdir(path.dirname(path.join(out,filename)),{recursive:true});await writeFile(path.join(out,filename),html);}
 const urls=['/','/meal-planner/',...recipes.map(r=>`/recipes/${r.slug}/`),'/photography-credits/'];
 await writeFile(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url=>`<url><loc>https://recipes.njmurray.com${url}</loc></url>`).join('')}</urlset>`);
-// Bundle the two dependency-free ES modules for Pages advanced mode. The same
+// Bundle the dependency-free ES modules for Pages advanced mode. The same
 // renderer creates static fallback files and the live database-backed pages.
 const renderer=await read('server/render.js');
-const worker=(await read('server/worker.js')).replace("import {createRenderer} from './render.js';",'');
+const siteContent="const handleSiteContent = (() => {\n"+(await read('server/site-content.js')).replace(/^export /gm,'')+"\nreturn handleSiteContent; })();";
+const worker=(await read('server/worker.js')).replace("import {createRenderer} from './render.js';",'').replace("import {handleSiteContent} from './site-content.js';",'');
 const publicSeeds=recipes.map(({sourceChat,...recipe})=>recipe);
-await writeFile(path.join(out,'_worker.js'),`${renderer}\n${worker}\nexport default createApp(${JSON.stringify(publicSeeds)},${JSON.stringify(photos)},${JSON.stringify(shopping)},${JSON.stringify(assets)});\n`);
-await writeFile(path.join(out,'_routes.json'),JSON.stringify({version:1,include:['/','/index.html','/recipes/*','/meal-planner*','/photography-credits*','/api/*','/uploads/*'],exclude:[]},null,2));
+await writeFile(path.join(out,'_worker.js'),`${renderer}\n${siteContent}\n${worker}\nexport default createApp(${JSON.stringify(publicSeeds)},${JSON.stringify(photos)},${JSON.stringify(shopping)},${JSON.stringify(assets)});\n`);
+await writeFile(path.join(out,'_routes.json'),JSON.stringify({version:1,include:['/','/index.html','/recipes/*','/meal-planner*','/photography-credits*','/api/*','/uploads/*','/media/photography/*'],exclude:[]},null,2));
 console.log(`Built ${recipes.length} recipes, meal planner and Pages editor backend.`);
