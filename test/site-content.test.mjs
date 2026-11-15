@@ -88,7 +88,7 @@ test('public gallery and homepage reads need no login and expose no storage cred
   const f=fixture(t);mockGithub(t);
   const gallery=await f.request('/api/shared/gallery',{source:null});
   assert.equal(gallery.status,200);assert.equal(gallery.headers.get('cache-control'),'private, no-store');
-  assert.deepEqual(await gallery.json(),{photos:[],hidden:[],available:true});
+  assert.deepEqual(await gallery.json(),{photos:[],hidden:[],available:true,replacements:[]});
   const homepage=await f.request('/api/shared/content/homepage',{source:null});
   assert.equal(homepage.status,200);assert.deepEqual(await homepage.json(),{content:{},revision:0});
   f.env.PHOTO_GITHUB_TOKEN='';
@@ -157,7 +157,7 @@ test('photo validation rejects oversized, malformed or incorrectly sized variant
     [multipart({small:addChunk(photo,'VP8X',new Uint8Array(10))}),422],
   ];
   for(const [body,expected] of cases){const response=await upload(body);assert.equal(response.status,expected,await response.clone().text());}
-  const tooLarge=await f.request('/api/shared/gallery',{method:'POST',cookie,headers:{'Content-Type':'multipart/form-data; boundary=test-boundary'},body:new Uint8Array(4016385)});
+  const tooLarge=await f.request('/api/shared/gallery',{method:'POST',cookie,headers:{'Content-Type':'multipart/form-data; boundary=test-boundary'},body:new Uint8Array(10016385)});
   assert.equal(tooLarge.status,413,'The streaming body limit applies even without Content-Length.');
   assert.equal(github.calls.length,0);assert.equal(f.db.sqlite.prepare('SELECT COUNT(*) count FROM gallery_photos').get().count,0);
 });
@@ -226,7 +226,7 @@ test('removing uploads and seeded photos updates the public gallery without rewr
   assert.equal((await f.request(new URL(uploaded.photo.src).pathname,{source:null})).status,404);
   assert.equal((await remove('dscf0008')).status,200);assert.equal((await remove('dscf0008')).status,200);
   assert.equal((await remove('not-a-photo')).status,404);
-  assert.deepEqual(await (await f.request('/api/shared/gallery',{source:null})).json(),{photos:[],hidden:['dscf0008'],available:true});
+  assert.deepEqual(await (await f.request('/api/shared/gallery',{source:null})).json(),{photos:[],hidden:['dscf0008'],available:true,replacements:[]});
   assert.equal(f.db.sqlite.prepare('SELECT COUNT(*) count FROM gallery_hidden').get().count,1);
   assert.equal(github.calls.length,count,'Removal changes metadata only; recoverable Git history stays intact.');
 });

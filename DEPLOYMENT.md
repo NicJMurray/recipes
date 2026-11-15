@@ -53,3 +53,10 @@ The `__Host-recipe_admin` cookie retains `Path=/; HttpOnly; Secure; SameSite=Str
 See [SHARED-EDITING.md](SHARED-EDITING.md) for the storage decision, secure one-time
 `PHOTO_GITHUB_TOKEN` setup, additive `server/site-schema.sql` migration, reusable
 client API and operational limits. No R2 subscription or new billing is required.
+
+HQ uploads and exact-filename replacements add `gallery_media` and
+`gallery_replacements` through that same idempotent schema file. Apply it before
+deploying the new API, then deploy the photography frontend. Existing photo rows,
+sessions, credentials and recipe data are preserved. Each new upload may include
+960px/1920px files up to 2 MB each and a 3840px file up to 6 MB. Replacement media
+gets a new immutable URL while the photo ID and published metadata stay unchanged.

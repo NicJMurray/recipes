@@ -7,13 +7,15 @@ There is no additional account or paid service to enable.
 
 ## Photography storage choice
 
-New photographs use **GitHub**, as requested: two browser-generated WebP files are
+New photographs use **GitHub**, as requested: three browser-generated WebP files are
 committed to `NicJMurray/photography`, under `photos/uploads/<id>/`. Original JPEGs
 never leave the browser. It reads the capture date, applies JPEG orientation, creates
-960px and 1920px-wide versions without enlarging smaller sources, and removes image
+960px, 1920px and 3840px-wide versions without enlarging smaller sources, and removes image
 metadata. The server checks sizes/dimensions and strips EXIF/XMP again before saving.
 A batch processes sequentially to keep memory and API use bounded. Each rendition is
-limited to 2 MB; JPEG input is limited to 40 MB and 80 megapixels.
+limited to 2 MB for the two smaller versions and 6 MB for 3840px; JPEG input is limited
+to 40 MB and 80 megapixels. The high-resolution version starts at quality 90, while
+the smaller versions retain their existing quality settings.
 
 GitHub works with the existing free repository and Cloudflare Pages integration,
 without enabling R2 or billing. It creates a commit per photo and automatically
@@ -38,6 +40,20 @@ timestamps, so those photographs follow in descending natural filename order.
 Removing a photo hides it from the public gallery and disables the shared media URL.
 The existing static originals and Git history remain recoverable; removal is not an
 erasure of a publicly committed file. D1's metadata and hidden-ID records survive builds.
+
+**Replace photos** is available only when logged in. It matches the exact filename,
+including letter case and extension, against the visible collection. Unmatched and
+ambiguous names are skipped before client-side conversion or upload; the API independently
+enforces the same rule. It changes only pixels and dimensions, preserving the existing
+photo ID, title, alternative text, capture date and ordering. Each replacement uses a
+new immutable media ID/path plus a revision check; a stale tab cannot overwrite a newer
+replacement. Hidden or deleted photographs are not eligible. Upload photos continues
+to create new entries and now includes the high-resolution version.
+
+Normal gallery browsing still uses the smaller versions. The fullscreen viewer uses
+responsive image sources to load 3840px only when useful for the display or zoom;
+adjacent images preload at no more than 1920px. Existing photographs are not upscaled
+automatically: the owner's original JPEGs are required to add detail.
 
 ## One-time GitHub permission
 
@@ -70,7 +86,8 @@ Cloudflare project link:
 
 Run the additive `server/site-schema.sql` migration against the existing
 `RECIPES_DB` (`recipes-editor`, `be986588-607a-49d3-a20f-942813a3ffbf`). It creates
-`gallery_photos`, `gallery_hidden` and `site_content`, without changing recipe tables,
+`gallery_photos`, `gallery_hidden`, `site_content`, `gallery_media` and
+`gallery_replacements`, without changing recipe tables,
 credentials or sessions. Do not reset the database or copy seed recipes over saved edits.
 
 Build and check recipes; push all three repositories to their existing `main` branches.
